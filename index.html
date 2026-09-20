@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED-NR | Desarrollo Web Profesional para Negocios Locales</title>
+<meta name="description" content="RED-NR — Creamos páginas web profesionales y sistemas automatizados para negocios locales en México. Incluye subdominio gratis, programa de WhatsApp y soporte continuo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" type="image/png" href="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00b5abdaa5e26a95449d3.png">
+<style>
+/* ================= VARIABLES ================= */
+:root{
+  --bg-primary: #FFFFFF;
+  --bg-soft: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --border-color: #E2E8F0;
+  --border-strong: #CBD5E1;
+
+  --color-primary: #2563EB;
+  --color-accent: #06B6D4;
+  --color-hover: #1D4ED8;
+  --color-primary-soft: #EFF6FF;
+  --color-accent-soft: #ECFEFF;
+
+  --text-main: #0F172A;
+  --text-body: #334155;
+  --text-muted: #64748B;
+
+  --brand-gradient: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+  --brand-gradient-soft: linear-gradient(135deg, #EFF6FF 0%, #ECFEFF 100%);
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow-sm: 0 2px 12px -4px rgba(15,23,42,.06);
+  --shadow-md: 0 12px 40px -12px rgba(15,23,42,.12);
+  --shadow-lg: 0 24px 60px -20px rgba(37,99,235,.25);
+  --shadow-glow: 0 20px 50px -20px rgba(37,99,235,.4);
+  --ease: cubic-bezier(.22,1,.36,1);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ================= RESET ================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:var(--font-body);
+  background-color:var(--bg-primary);
+  color:var(--text-body);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+::selection{background:var(--color-accent);color:#fff}
+
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg-soft)}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:2px solid var(--bg-soft)}
+::-webkit-scrollbar-thumb:hover{background:var(--color-primary)}
+
+/* ================= UTILIDADES ================= */
+.container{width:min(1200px,92%);margin-inline:auto}
+.grad-text{
+  background:var(--brand-gradient);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.section{padding:clamp(70px,9vw,120px) 0;position:relative}
+
+/* ================= BACKGROUND DECORATIVO ================= */
+.bg-decoration{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.bg-decoration::before{
+  content:"";position:absolute;
+  top:-200px;left:-200px;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(37,99,235,.08), transparent 70%);
+  filter:blur(60px);
+}
+.bg-decoration::after{
+  content:"";position:absolute;
+  bottom:-200px;right:-200px;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle, rgba(6,182,212,.08), transparent 70%);
+  filter:blur(60px);
+}
+.bg-grid{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(15,23,42,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(15,23,42,.028) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 80%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 80%);
+}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:14px 0;
+  transition:background .4s var(--ease),backdrop-filter .4s,border-color .4s,padding .4s var(--ease),box-shadow .4s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-bottom-color:var(--border-color);
+  padding:8px 0;
+  box-shadow:0 2px 20px -8px rgba(15,23,42,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  transition:transform .5s var(--ease),filter .5s var(--ease);
+  flex-shrink:0;position:relative;
+}
+.brand-logo img{
+  width:100%;height:100%;object-fit:contain;display:block;
+  filter:drop-shadow(0 6px 14px rgba(37,99,235,.35));
+}
+.brand:hover .brand-logo{
+  transform:rotate(-6deg) scale(1.08);
+  filter:drop-shadow(0 10px 22px rgba(6,182,212,.55));
+}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text b{
+  font-family:var(--font-display);font-size:1.15rem;font-weight:700;letter-spacing:1px;
+  color:var(--text-main);
+}
+.brand-text span{
+  font-size:.6rem;letter-spacing:4px;color:var(--color-primary);font-weight:600;margin-top:3px;
+}
+
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:9px 16px;border-radius:99px;font-size:.9rem;font-weight:500;color:var(--text-muted);
+  transition:color .3s,background .3s,transform .3s var(--ease);
+}
+.nav-links a:hover{color:var(--text-main);background:var(--bg-subtle);transform:translateY(-2px)}
+
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 22px;border-radius:99px;font-weight:600;font-size:.88rem;
+  background:var(--brand-gradient);color:#fff;
+  box-shadow:0 8px 22px -10px var(--color-primary);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),filter .35s;
+}
+.nav-cta:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 34px -10px var(--color-accent);filter:brightness(1.05)}
+.nav-cta i{font-size:.85rem}
+
+.burger{display:none;flex-direction:column;gap:5px;padding:8px}
+.burger span{width:24px;height:2px;background:var(--text-main);border-radius:2px;transition:.35s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  padding:130px 0 80px;position:relative;overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 16px;border-radius:99px;font-size:.76rem;font-weight:600;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--color-primary);
+  background:var(--color-primary-soft);border:1px solid rgba(37,99,235,.2);
+  margin-bottom:26px;
+}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--color-accent);
+  box-shadow:0 0 0 0 rgba(6,182,212,.8);animation:pulse 2.2s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(6,182,212,.6)}
+  70%{box-shadow:0 0 0 12px rgba(6,182,212,0)}
+  100%{box-shadow:0 0 0 0 rgba(6,182,212,0)}
+}
+
+.hero h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.2rem,5.5vw,4.2rem);
+  line-height:1.05;font-weight:700;letter-spacing:-1.5px;margin-bottom:22px;
+  color:var(--text-main);
+}
+.hero p.lead{
+  font-size:clamp(1rem,1.35vw,1.15rem);color:var(--text-muted);max-width:560px;margin-bottom:36px;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;border-radius:99px;font-weight:600;font-size:.95rem;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s,filter .4s;
+  position:relative;overflow:hidden;
+}
+.btn i{font-size:.95rem}
+.btn-primary{
+  background:var(--brand-gradient);color:#fff;
+  box-shadow:0 12px 30px -12px var(--color-primary);
+}
+.btn-primary::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.35) 50%,transparent 75%);
+  transform:translateX(-120%);transition:transform .9s var(--ease);
+}
+.btn-primary:hover::after{transform:translateX(120%)}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 44px -12px var(--color-accent);filter:brightness(1.05)}
+
+.btn-ghost{
+  background:#fff;color:var(--text-main);
+  border:1px solid var(--border-strong);
+  box-shadow:var(--shadow-sm);
+}
+.btn-ghost:hover{background:var(--bg-soft);transform:translateY(-4px);border-color:var(--color-primary);box-shadow:0 12px 30px -12px rgba(37,99,235,.3)}
+
+.stats{display:flex;gap:38px;flex-wrap:wrap}
+.stat b{
+  display:block;font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--text-main);
+}
+.stat span{font-size:.78rem;color:var(--text-muted);letter-spacing:.6px}
+.stat b em{font-style:normal;background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ================= HERO VISUAL ================= */
+.hero-visual{display:flex;justify-content:center;align-items:center;position:relative}
+.hero-card{
+  position:relative;width:100%;max-width:440px;
+  background:#fff;border:1px solid var(--border-color);
+  border-radius:24px;padding:28px;
+  box-shadow:0 30px 70px -30px rgba(37,99,235,.35), 0 8px 24px -12px rgba(15,23,42,.08);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(-8px)}50%{transform:translateY(8px)}}
+.hero-card::before{
+  content:"";position:absolute;inset:-2px;border-radius:26px;
+  background:var(--brand-gradient);z-index:-1;opacity:.35;filter:blur(18px);
+}
+.hero-card-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:20px;
+  padding-bottom:16px;border-bottom:1px solid var(--border-color);
+}
+.hero-card-header .dots{display:flex;gap:6px}
+.hero-card-header .dots span{width:10px;height:10px;border-radius:50%}
+.hero-card-header .dots span:nth-child(1){background:#ef4444}
+.hero-card-header .dots span:nth-child(2){background:#f59e0b}
+.hero-card-header .dots span:nth-child(3){background:#10b981}
+.hero-card-header .url{
+  flex:1;text-align:center;font-size:.78rem;color:var(--text-muted);
+  background:var(--bg-subtle);padding:5px 12px;border-radius:99px;
+  font-family:var(--font-display);
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.hero-card-line{
+  display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;
+  background:var(--bg-soft);margin-bottom:10px;border:1px solid var(--border-color);
+  transition:transform .3s var(--ease),background .3s;
+}
+.hero-card-line:hover{transform:translateX(4px);background:var(--color-primary-soft);border-color:rgba(37,99,235,.25)}
+.hero-card-line i{color:var(--color-primary);font-size:1rem;width:20px;text-align:center}
+.hero-card-line span{font-size:.88rem;color:var(--text-main);font-weight:500}
+.hero-card-progress{height:6px;background:var(--bg-subtle);border-radius:99px;overflow:hidden;margin-top:20px;}
+.hero-card-progress div{height:100%;width:0%;background:var(--brand-gradient);border-radius:99px;animation:progress 3s var(--ease) infinite;}
+@keyframes progress{0%{width:0%}50%{width:75%}100%{width:100%}}
+
+.hero-card-brand{
+  display:flex;align-items:center;gap:10px;
+  margin-top:18px;padding-top:18px;
+  border-top:1px solid var(--border-color);
+}
+.hero-card-brand .mini-logo{
+  width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  background:#fff;
+  box-shadow:0 4px 12px -4px rgba(37,99,235,.5), 0 0 0 1px rgba(37,99,235,.1);
+}
+.hero-card-brand .mini-logo img{width:100%;height:100%;object-fit:contain}
+.hero-card-brand .txt{line-height:1.3}
+.hero-card-brand .txt b{
+  display:block;font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--text-main);
+}
+.hero-card-brand .txt span{font-size:.72rem;color:var(--text-muted)}
+
+/* ================= MARQUEE ================= */
+.marquee{
+  border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);
+  padding:20px 0;overflow:hidden;background:var(--bg-soft);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:slide 35s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee-item{
+  display:flex;align-items:center;gap:11px;font-family:var(--font-display);
+  font-size:.82rem;letter-spacing:2.4px;color:var(--text-muted);text-transform:uppercase;white-space:nowrap;
+  font-weight:600;
+}
+.marquee-item i{color:var(--color-accent)}
+
+/* ================= SECTION HEAD ================= */
+.sec-head{text-align:center;max-width:720px;margin:0 auto 60px}
+.sec-tag{
+  font-family:var(--font-display);font-size:.72rem;letter-spacing:5px;color:var(--color-primary);
+  text-transform:uppercase;display:block;margin-bottom:14px;font-weight:600;
+}
+.sec-head h2{
+  font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;
+  letter-spacing:-.8px;line-height:1.15;margin-bottom:16px;color:var(--text-main);
+}
+.sec-head p{color:var(--text-muted);font-size:1.02rem}
+
+/* ================= SERVICIOS ================= */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.feature-card{
+  background:#fff;border:1px solid var(--border-color);
+  border-radius:var(--radius);padding:32px 28px;
+  transition:transform .5s var(--ease),border-color .5s,box-shadow .5s var(--ease);
+  position:relative;overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.feature-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--brand-gradient);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--ease);
+}
+.feature-card:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.3);box-shadow:0 30px 60px -25px rgba(37,99,235,.35);}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-icon{
+  width:56px;height:56px;border-radius:14px;
+  background:var(--brand-gradient-soft);border:1px solid rgba(37,99,235,.15);
+  display:grid;place-items:center;color:var(--color-primary);font-size:1.5rem;
+  margin-bottom:22px;transition:transform .5s var(--ease),background .5s;
+}
+.feature-card:hover .feature-icon{transform:scale(1.1) rotate(-6deg);background:var(--brand-gradient);color:#fff;}
+.feature-card h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;margin-bottom:12px;color:var(--text-main);}
+.feature-card p{font-size:.92rem;color:var(--text-muted);line-height:1.7}
+
+/* ================= DOMINIO SECTION ================= */
+.domain-section{
+  background:linear-gradient(170deg,var(--bg-soft),#FFFFFF);
+  position:relative;overflow:hidden;
+}
+.domain-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:28px;
+  margin-top:20px;
+}
+.domain-card{
+  background:#fff;
+  border:1px solid var(--border-color);
+  border-radius:22px;
+  padding:36px 32px 34px;
+  position:relative;
+  transition:transform .5s var(--ease),border-color .5s,box-shadow .5s var(--ease);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.domain-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--brand-gradient);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--ease);
+}
+.domain-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(37,99,235,.3);
+  box-shadow:0 30px 60px -25px rgba(37,99,235,.35);
+}
+.domain-card:hover::before{transform:scaleX(1)}
+.domain-card.recommended{
+  border-color:transparent;
+  background:linear-gradient(170deg,#fff,rgba(37,211,102,.04));
+  box-shadow:0 30px 70px -20px rgba(37,211,102,.35);
+}
+.domain-card.recommended::before{
+  background:linear-gradient(135deg,#25D366 0%,#06B6D4 100%);
+}
+.domain-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:6px 14px;border-radius:99px;
+  font-size:.68rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  margin-bottom:22px;
+}
+.domain-tag.free{
+  background:linear-gradient(135deg,rgba(37,211,102,.15),rgba(6,182,212,.1));
+  color:#25D366;
+  border:1px solid rgba(37,211,102,.3);
+}
+.domain-tag.own{
+  background:var(--color-primary-soft);
+  color:var(--color-primary);
+  border:1px solid rgba(37,99,235,.2);
+}
+.domain-icon{
+  width:64px;height:64px;border-radius:18px;
+  display:grid;place-items:center;
+  font-size:1.7rem;
+  margin-bottom:22px;
+  transition:transform .5s var(--ease);
+}
+.domain-card:hover .domain-icon{transform:scale(1.08) rotate(-6deg)}
+.domain-card.recommended .domain-icon{
+  background:linear-gradient(135deg,#25D366,#128C4A);
+  color:#fff;
+  box-shadow:0 12px 30px -12px rgba(37,211,102,.6);
+}
+.domain-card:not(.recommended) .domain-icon{
+  background:var(--brand-gradient);
+  color:#fff;
+  box-shadow:0 12px 30px -12px var(--color-primary);
+}
+.domain-card h3{
+  font-family:var(--font-display);font-size:1.5rem;font-weight:700;
+  margin-bottom:12px;color:var(--text-main);line-height:1.2;
+}
+.domain-card .url-preview{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 18px;
+  background:var(--bg-subtle);
+  border:1px solid var(--border-color);
+  border-radius:12px;
+  margin-bottom:22px;
+  font-family:var(--font-display);
+  font-size:.95rem;
+  color:var(--text-main);
+  font-weight:600;
+  transition:background .3s,border-color .3s;
+}
+.domain-card:hover .url-preview{background:#fff;border-color:var(--color-primary)}
+.domain-card.recommended:hover .url-preview{border-color:#25D366}
+.domain-card .url-preview i{color:var(--color-primary);font-size:1rem}
+.domain-card.recommended .url-preview i{color:#25D366}
+.domain-card .url-preview span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.domain-card .desc{
+  font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:22px;
+}
+.domain-features{
+  display:flex;flex-direction:column;gap:11px;
+  padding-top:20px;border-top:1px solid var(--border-color);
+}
+.domain-features li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.85rem;color:var(--text-body);line-height:1.5;
+}
+.domain-features li i{
+  color:var(--color-accent);font-size:.7rem;margin-top:5px;flex-shrink:0;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--color-accent-soft);
+  display:grid;place-items:center;
+}
+.domain-card.recommended .domain-features li i{
+  background:rgba(37,211,102,.15);color:#25D366;
+}
+
+.domain-note{
+  margin-top:36px;
+  padding:20px 26px;
+  background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(6,182,212,.04));
+  border:1px solid rgba(37,99,235,.15);
+  border-radius:16px;
+  display:flex;align-items:flex-start;gap:16px;
+  max-width:860px;margin-left:auto;margin-right:auto;
+}
+.domain-note i{
+  color:var(--color-primary);font-size:1.4rem;flex-shrink:0;margin-top:2px;
+}
+.domain-note p{
+  font-size:.92rem;color:var(--text-body);line-height:1.65;margin:0;
+}
+.domain-note strong{color:var(--text-main)}
+
+/* ================= WHATSAPP PROGRAM SHOWCASE ================= */
+.wa-showcase{
+  background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 40px 80px -30px rgba(15,23,42,.5);
+}
+.wa-showcase::before{
+  content:"";position:absolute;top:-50%;left:-10%;width:70%;height:200%;
+  background:radial-gradient(circle,rgba(37,211,102,.25),transparent 65%);
+  filter:blur(50px);pointer-events:none;
+}
+.wa-showcase::after{
+  content:"";position:absolute;bottom:-60%;right:-10%;width:60%;height:180%;
+  background:radial-gradient(circle,rgba(6,182,212,.25),transparent 65%);
+  filter:blur(50px);pointer-events:none;
+}
+.wa-showcase-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;
+  gap:50px;align-items:center;
+  padding:clamp(40px,6vw,70px) clamp(28px,5vw,64px);
+  position:relative;z-index:1;
+}
+.wa-showcase-text .wa-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:99px;
+  font-size:.72rem;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
+  background:linear-gradient(135deg,#25D366,#128C4A);
+  color:#fff;
+  margin-bottom:22px;
+  box-shadow:0 8px 22px -8px rgba(37,211,102,.7);
+}
+.wa-showcase-text .wa-badge i{font-size:.85rem}
+.wa-showcase-text h2{
+  font-family:var(--font-display);font-size:clamp(1.6rem,3.2vw,2.4rem);
+  font-weight:700;line-height:1.15;letter-spacing:-.6px;
+  color:#fff;margin-bottom:18px;
+}
+.wa-showcase-text h2 .grad-green{
+  background:linear-gradient(135deg,#25D366 0%,#22D3EE 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.wa-showcase-text > p{
+  color:#CBD5E1;font-size:1rem;margin-bottom:30px;
+}
+.wa-features{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;
+}
+.wa-feature{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  transition:background .3s,border-color .3s,transform .3s var(--ease);
+}
+.wa-feature:hover{
+  background:rgba(37,211,102,.08);
+  border-color:rgba(37,211,102,.3);
+  transform:translateY(-3px);
+}
+.wa-feature-ico{
+  width:36px;height:36px;flex-shrink:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,rgba(37,211,102,.2),rgba(6,182,212,.2));
+  border:1px solid rgba(37,211,102,.3);
+  display:grid;place-items:center;
+  color:#25D366;font-size:.95rem;
+}
+.wa-feature-txt b{
+  display:block;color:#fff;font-size:.85rem;font-weight:600;margin-bottom:2px;
+}
+.wa-feature-txt span{font-size:.75rem;color:#94A3B8;line-height:1.4}
+
+.wa-showcase-cta{
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+}
+.wa-showcase-cta .free-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 20px;border-radius:99px;
+  background:rgba(37,211,102,.15);
+  border:1px solid rgba(37,211,102,.4);
+  color:#25D366;font-weight:700;font-size:.85rem;
+}
+.wa-showcase-cta .free-tag i{font-size:1rem}
+
+.wa-showcase-visual{
+  position:relative;
+  display:flex;justify-content:center;align-items:center;
+}
+.wa-mockup{
+  position:relative;
+  width:100%;max-width:480px;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.7);
+  transform:perspective(1200px) rotateY(-6deg) rotateX(2deg);
+  transition:transform .6s var(--ease);
+}
+.wa-showcase-visual:hover .wa-mockup{
+  transform:perspective(1200px) rotateY(0deg) rotateX(0deg);
+}
+.wa-mockup-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:11px 14px;
+  background:#F1F5F9;
+  border-bottom:1px solid #E2E8F0;
+}
+.wa-mockup-bar .dots{display:flex;gap:5px}
+.wa-mockup-bar .dots span{width:10px;height:10px;border-radius:50%}
+.wa-mockup-bar .dots span:nth-child(1){background:#ef4444}
+.wa-mockup-bar .dots span:nth-child(2){background:#f59e0b}
+.wa-mockup-bar .dots span:nth-child(3){background:#10b981}
+.wa-mockup-bar .title{
+  flex:1;text-align:center;font-size:.72rem;color:#64748B;
+  font-family:var(--font-display);font-weight:600;
+}
+.wa-mockup img{width:100%;display:block}
+
+/* ================= PORTAFOLIO ================= */
+.portfolio-section{background:var(--bg-soft);position:relative;overflow:hidden}
+.portfolio-section::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:800px;height:400px;
+  background:radial-gradient(ellipse, rgba(37,99,235,.08), transparent 70%);
+  filter:blur(60px);pointer-events:none;
+}
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:32px;
+  position:relative;
+  z-index:1;
+}
+
+.project-card{
+  background:#fff;
+  border:1px solid var(--border-color);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .6s;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.project-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(37,99,235,.3);
+  box-shadow:0 40px 80px -30px rgba(37,99,235,.4);
+}
+
+.project-badge{
+  position:absolute;top:16px;right:16px;z-index:3;
+  padding:6px 14px;border-radius:99px;
+  font-size:.68rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 6px 18px -6px rgba(15,23,42,.3);
+}
+.project-badge.standard{
+  background:rgba(255,255,255,.95);color:var(--color-primary);
+  border:1px solid rgba(37,99,235,.2);
+}
+.project-badge.premium{
+  background:var(--brand-gradient);color:#fff;
+  border:1px solid transparent;
+}
+
+.project-mockup{
+  position:relative;
+  background:linear-gradient(160deg,#F1F5F9,#E2E8F0);
+  padding:14px 14px 0;
+  overflow:hidden;
+}
+.project-browser{
+  background:#fff;
+  border-radius:12px 12px 0 0;
+  overflow:hidden;
+  box-shadow:0 8px 30px -10px rgba(15,23,42,.25);
+  transition:transform .6s var(--ease);
+}
+.project-card:hover .project-browser{transform:translateY(-4px)}
+.project-browser-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;
+  background:var(--bg-subtle);
+  border-bottom:1px solid var(--border-color);
+}
+.project-browser-bar .dots{display:flex;gap:5px;flex-shrink:0}
+.project-browser-bar .dots span{width:9px;height:9px;border-radius:50%}
+.project-browser-bar .dots span:nth-child(1){background:#ef4444}
+.project-browser-bar .dots span:nth-child(2){background:#f59e0b}
+.project-browser-bar .dots span:nth-child(3){background:#10b981}
+.project-browser-bar .address{
+  flex:1;font-size:.68rem;color:var(--text-muted);
+  background:#fff;padding:4px 10px;border-radius:99px;
+  text-align:center;font-family:var(--font-display);
+  border:1px solid var(--border-color);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.project-image{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:#E2E8F0;
+}
+.project-image img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  transition:transform 1s var(--ease);
+  display:block;
+}
+.project-card:hover .project-image img{transform:scale(1.06)}
+
+.project-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(15,23,42,.85) 0%, rgba(15,23,42,.4) 40%, transparent 70%);
+  opacity:0;
+  transition:opacity .5s var(--ease);
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:24px;
+}
+.project-card:hover .project-overlay{opacity:1}
+.project-view{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:99px;
+  background:#fff;color:var(--text-main);
+  font-weight:600;font-size:.85rem;
+  transform:translateY(12px);
+  transition:transform .5s var(--ease),background .3s,color .3s;
+  box-shadow:0 12px 30px -10px rgba(0,0,0,.3);
+  cursor:pointer;
+}
+.project-card:hover .project-view{transform:translateY(0)}
+.project-view:hover{background:var(--color-primary);color:#fff}
+.project-view i{font-size:.85rem}
+
+.project-info{
+  padding:24px 24px 26px;
+  display:flex;flex-direction:column;flex:1;
+}
+.project-category{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--color-primary);margin-bottom:10px;
+}
+.project-category i{font-size:.75rem}
+.project-card h3{
+  font-family:var(--font-display);font-size:1.3rem;font-weight:700;
+  color:var(--text-main);margin-bottom:10px;line-height:1.3;
+}
+.project-card p{
+  font-size:.9rem;color:var(--text-muted);line-height:1.65;flex:1;margin-bottom:18px;
+}
+.project-tags{
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding-top:16px;border-top:1px solid var(--border-color);
+}
+.project-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:99px;
+  font-size:.72rem;font-weight:500;
+  background:var(--bg-soft);color:var(--text-body);
+  border:1px solid var(--border-color);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.project-tag i{color:var(--color-accent);font-size:.68rem}
+.project-card:hover .project-tag{
+  background:var(--color-primary-soft);
+  border-color:rgba(37,99,235,.2);
+  color:var(--color-primary);
+}
+
+.portfolio-cta{
+  text-align:center;margin-top:60px;
+  padding:36px 24px;
+  background:#fff;
+  border:1px dashed var(--border-strong);
+  border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  max-width:640px;margin-left:auto;margin-right:auto;
+}
+.portfolio-cta p{
+  font-size:1.02rem;color:var(--text-muted);
+}
+.portfolio-cta strong{color:var(--text-main)}
+
+/* ================= PLANES ================= */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;align-items:stretch;}
+.plan{
+  background:#fff;border:1px solid var(--border-color);
+  border-radius:24px;padding:40px 32px 36px;
+  display:flex;flex-direction:column;position:relative;
+  transition:transform .5s var(--ease),border-color .5s,box-shadow .5s var(--ease);
+  overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.plan:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.3);box-shadow:0 30px 60px -25px rgba(37,99,235,.35);}
+.plan.featured{
+  border-color:transparent;
+  background:linear-gradient(170deg,#fff,rgba(239,246,255,.5));
+  box-shadow:0 30px 70px -20px rgba(37,99,235,.4);
+  transform:translateY(-4px);
+}
+.plan.featured:hover{transform:translateY(-12px)}
+.plan.featured::before{
+  content:"";position:absolute;inset:0;border-radius:24px;padding:2px;
+  background:var(--brand-gradient);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;
+}
+.plan.featured::after{
+  content:"";position:absolute;top:-50%;right:-30%;width:70%;height:150%;
+  background:radial-gradient(circle,rgba(6,182,212,.10),transparent 65%);
+  filter:blur(30px);pointer-events:none;
+}
+.plan-tag{
+  position:absolute;top:22px;right:22px;z-index:2;
+  padding:6px 14px;border-radius:99px;font-size:.68rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  background:var(--brand-gradient);color:#fff;
+  box-shadow:0 6px 18px -6px var(--color-primary);
+}
+.plan-icon{
+  width:60px;height:60px;border-radius:16px;
+  background:var(--brand-gradient-soft);border:1px solid rgba(37,99,235,.15);
+  display:grid;place-items:center;color:var(--color-primary);font-size:1.6rem;margin-bottom:22px;
+  transition:transform .5s var(--ease);
+}
+.plan.featured .plan-icon{background:var(--brand-gradient);color:#fff;border-color:transparent}
+.plan:hover .plan-icon{transform:scale(1.08) rotate(-6deg)}
+.plan h3{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:8px;color:var(--text-main);}
+.plan-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:24px;min-height:40px}
+.plan-price{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+.plan-price .amount{
+  font-family:var(--font-display);font-size:3rem;font-weight:700;line-height:1;
+  background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.plan-price .currency{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--text-main);}
+.plan-price .period{font-size:.9rem;color:var(--text-muted);font-weight:500}
+.plan-note{font-size:.78rem;color:var(--text-muted);margin-bottom:20px}
+
+.plan-domain{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;
+  background:var(--color-primary-soft);
+  border:1px solid rgba(37,99,235,.2);
+  border-radius:12px;
+  margin-bottom:20px;
+  font-size:.82rem;
+  color:var(--text-main);
+  font-weight:500;
+}
+.plan-domain i{color:var(--color-primary);font-size:1rem}
+.plan.featured .plan-domain{
+  background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(6,182,212,.06));
+}
+
+.plan-bonus{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 16px;
+  background:linear-gradient(135deg,rgba(37,211,102,.10),rgba(6,182,212,.08));
+  border:1px dashed rgba(37,211,102,.4);
+  border-radius:14px;
+  margin-bottom:24px;
+  position:relative;
+}
+.plan-bonus::before{
+  content:"BONO EXCLUSIVO";
+  position:absolute;top:-8px;left:14px;
+  padding:2px 10px;border-radius:99px;
+  background:linear-gradient(135deg,#25D366,#128C4A);color:#fff;
+  font-size:.58rem;font-weight:700;letter-spacing:1.2px;
+}
+.plan-bonus i{
+  color:#25D366;font-size:1.1rem;margin-top:2px;
+}
+.plan-bonus .bonus-txt{line-height:1.45}
+.plan-bonus .bonus-txt b{
+  display:block;font-size:.82rem;color:var(--text-main);font-weight:700;margin-bottom:2px;
+}
+.plan-bonus .bonus-txt span{
+  font-size:.75rem;color:var(--text-muted);
+}
+
+.plan-divider{height:1px;background:var(--border-color);margin:0 0 24px;}
+.plan-features{flex:1;margin-bottom:32px;display:flex;flex-direction:column;gap:14px}
+.plan-features li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--text-body);line-height:1.55;}
+.plan-features li i{
+  color:var(--color-accent);margin-top:3px;flex-shrink:0;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--color-accent-soft);display:grid;place-items:center;font-size:.65rem;
+}
+.plan-features li.disabled{color:var(--text-muted);opacity:.55}
+.plan-features li.disabled i{background:var(--bg-subtle);color:var(--text-muted)}
+.plan-features li.highlight{
+  background:linear-gradient(135deg,rgba(37,211,102,.06),rgba(6,182,212,.04));
+  padding:8px 10px;border-radius:8px;margin-left:-10px;margin-right:-10px;
+}
+.plan-features li.highlight i{background:rgba(37,211,102,.15);color:#25D366}
+
+.plan-cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 26px;border-radius:14px;font-weight:600;font-size:.95rem;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s,filter .4s;
+  text-align:center;
+}
+.plan-cta.primary{background:var(--brand-gradient);color:#fff;box-shadow:0 12px 30px -12px var(--color-primary)}
+.plan-cta.primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px var(--color-accent);filter:brightness(1.05)}
+.plan-cta.secondary{background:#fff;color:var(--text-main);border:1px solid var(--border-strong);box-shadow:var(--shadow-sm);}
+.plan-cta.secondary:hover{background:var(--bg-soft);border-color:var(--color-primary);transform:translateY(-3px);color:var(--color-primary)}
+
+/* ================= COMPARATIVA ================= */
+.comparison{background:#fff;border:1px solid var(--border-color);border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(15,23,42,.15);}
+.comparison-header{display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--bg-soft);border-bottom:1px solid var(--border-color);}
+.comparison-header > div{padding:26px 20px;font-family:var(--font-display);font-size:1rem;font-weight:600;text-align:center;color:var(--text-main);}
+.comparison-header > div:first-child{text-align:left;color:var(--text-muted);font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
+.comparison-header .col-basic{color:var(--text-main)}
+.comparison-header .col-premium{color:#fff;background:var(--brand-gradient);position:relative;}
+.comparison-header .col-premium::after{
+  content:"Recomendado";position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;
+  background:#0F172A;color:#fff;padding:3px 12px;border-radius:0 0 8px 8px;
+  font-family:var(--font-body);font-weight:700;
+}
+.comparison-row{display:grid;grid-template-columns:2fr 1fr 1fr;border-bottom:1px solid var(--border-color);transition:background .3s;}
+.comparison-row:last-child{border-bottom:none}
+.comparison-row:hover{background:var(--bg-soft)}
+.comparison-row.highlight-row{background:linear-gradient(90deg,rgba(37,211,102,.08),rgba(6,182,212,.04))}
+.comparison-row.highlight-row:hover{background:linear-gradient(90deg,rgba(37,211,102,.12),rgba(6,182,212,.08))}
+.comparison-row.domain-row{background:linear-gradient(90deg,rgba(37,99,235,.05),rgba(6,182,212,.02))}
+.comparison-row.domain-row:hover{background:linear-gradient(90deg,rgba(37,99,235,.09),rgba(6,182,212,.05))}
+.comparison-row > div{padding:18px 20px;font-size:.9rem;display:flex;align-items:center;}
+.comparison-row > div:first-child{color:var(--text-body);font-weight:500;text-align:left;gap:12px;}
+.comparison-row > div:first-child i{
+  color:var(--color-primary);width:24px;height:24px;text-align:center;
+  background:var(--color-primary-soft);border-radius:6px;
+  display:grid;place-items:center;font-size:.75rem;flex-shrink:0;
+}
+.comparison-row.highlight-row > div:first-child i{
+  background:rgba(37,211,102,.15);color:#25D366;
+}
+.comparison-row .col-basic,
+.comparison-row .col-premium{justify-content:center;text-align:center;}
+.comparison-row .col-basic i{font-size:1.2rem;color:var(--text-muted)}
+.comparison-row .col-basic i.yes{color:#10B981}
+.comparison-row .col-premium{background:rgba(239,246,255,.5)}
+.comparison-row.highlight-row .col-premium{background:rgba(37,211,102,.1)}
+.comparison-row.domain-row .col-premium{background:rgba(37,99,235,.08)}
+.comparison-row .col-premium i.yes{font-size:1.3rem;color:var(--color-primary)}
+.comparison-row.highlight-row .col-premium i.yes{color:#25D366}
+.comparison-row .col-premium i.no{font-size:1.2rem;color:var(--text-muted);opacity:.4}
+.comparison-row .text-badge{
+  font-size:.75rem;font-weight:600;padding:4px 10px;border-radius:6px;
+  text-align:center;line-height:1.2;
+}
+.comparison-row .text-badge.free{
+  background:rgba(37,211,102,.15);color:#128C4A;
+}
+.comparison-row .text-badge.paid{
+  background:rgba(37,99,235,.12);color:var(--color-primary);
+}
+.comparison-footer{display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--bg-soft);border-top:1px solid var(--border-color);padding:8px 0;}
+.comparison-footer > div{padding:20px}
+.comparison-footer .col-premium{background:rgba(239,246,255,.7)}
+.comparison-footer .cta-mini{display:block;text-align:center;font-size:.85rem;font-weight:600;padding:11px 16px;border-radius:10px;transition:all .35s var(--ease);}
+.comparison-footer .col-basic .cta-mini{background:#fff;border:1px solid var(--border-strong);color:var(--text-main);}
+.comparison-footer .col-basic .cta-mini:hover{background:var(--bg-subtle);transform:translateY(-2px);border-color:var(--color-primary);color:var(--color-primary)}
+.comparison-footer .col-premium .cta-mini{background:var(--brand-gradient);color:#fff;box-shadow:0 8px 22px -8px var(--color-primary);}
+.comparison-footer .col-premium .cta-mini:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 14px 30px -10px var(--color-accent)}
+
+/* ================= PROCESO ================= */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;position:relative;}
+.process-card{
+  text-align:center;padding:36px 22px;position:relative;
+  background:#fff;border:1px solid var(--border-color);
+  border-radius:var(--radius);box-shadow:var(--shadow-sm);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;
+}
+.process-card:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.3);box-shadow:0 24px 50px -25px rgba(37,99,235,.35);}
+.process-num{
+  width:64px;height:64px;margin:0 auto 22px;border-radius:18px;
+  background:var(--brand-gradient);display:grid;place-items:center;
+  font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:#fff;
+  box-shadow:0 12px 30px -12px var(--color-primary);
+  transition:transform .5s var(--ease);
+}
+.process-card:hover .process-num{transform:scale(1.1) rotate(-6deg)}
+.process-card h3{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-bottom:10px;color:var(--text-main);}
+.process-card p{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+
+/* ================= CTA FINAL ================= */
+.cta-final{
+  position:relative;border-radius:28px;overflow:hidden;
+  padding:clamp(50px,7vw,90px) clamp(24px,5vw,64px);
+  background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);
+  text-align:center;box-shadow:0 30px 70px -20px rgba(15,23,42,.5);
+}
+.cta-final::before{
+  content:"";position:absolute;top:-50%;left:-10%;width:70%;height:200%;
+  background:radial-gradient(circle,rgba(37,99,235,.5),transparent 65%);
+  filter:blur(40px);pointer-events:none;
+}
+.cta-final::after{
+  content:"";position:absolute;bottom:-60%;right:-10%;width:60%;height:180%;
+  background:radial-gradient(circle,rgba(6,182,212,.4),transparent 65%);
+  filter:blur(40px);pointer-events:none;
+}
+.cta-inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.cta-inner .sec-tag{color:var(--color-accent)}
+.cta-inner h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;line-height:1.15;margin-bottom:18px;letter-spacing:-.8px;color:#fff;}
+.cta-inner h2 .grad-text{background:linear-gradient(135deg,#60A5FA 0%,#22D3EE 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.cta-inner p{color:#CBD5E1;font-size:1.05rem;margin-bottom:36px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.cta-final .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.15);backdrop-filter:blur(8px);}
+.cta-final .btn-ghost:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid var(--border-color);padding:56px 0 34px;margin-top:60px;background:var(--bg-soft);}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-brand{display:flex;flex-direction:column;gap:14px;max-width:340px}
+.foot-brand-top{display:flex;align-items:center;gap:14px}
+.foot-brand .brand-logo{width:60px;height:60px;display:grid;place-items:center;flex-shrink:0;}
+.foot-brand .brand-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(37,99,235,.35));}
+.foot-brand p{font-size:.85rem;color:var(--text-muted);line-height:1.6;}
+.foot-brand .foot-social{display:flex;gap:10px;margin-top:4px}
+.foot-social a{
+  width:36px;height:36px;border-radius:10px;
+  background:#fff;border:1px solid var(--border-color);
+  display:grid;place-items:center;
+  color:var(--text-muted);font-size:.85rem;
+  transition:all .35s var(--ease);
+}
+.foot-social a:hover{
+  background:var(--brand-gradient);color:#fff;border-color:transparent;
+  transform:translateY(-3px);
+  box-shadow:0 10px 22px -8px var(--color-primary);
+}
+
+.foot-col h4{font-family:var(--font-display);font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-main);margin-bottom:16px;}
+.foot-col a{display:block;font-size:.88rem;color:var(--text-muted);padding:6px 0;transition:color .3s,transform .3s var(--ease);}
+.foot-col a:hover{color:var(--color-primary);transform:translateX(5px)}
+.foot-col a i{font-size:.7rem;margin-right:6px;color:var(--color-accent)}
+
+.foot-bottom{
+  border-top:1px solid var(--border-color);padding-top:24px;
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+  font-size:.8rem;color:var(--text-muted);
+}
+.foot-bottom b{color:var(--color-primary)}
+.foot-bottom-legal{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem}
+.foot-bottom-legal a{color:var(--text-muted);transition:color .3s}
+.foot-bottom-legal a:hover{color:var(--color-primary)}
+
+/* ================= ANIMACIONES SCROLL ================= */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ================= WHATSAPP FLOTANTE ================= */
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:90;
+  width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#25d366,#128c4a);color:#fff;
+  box-shadow:0 14px 38px -12px rgba(37,211,102,.6);
+  transition:transform .45s var(--ease),box-shadow .45s;
+}
+.wa-float i{font-size:1.7rem}
+.wa-float::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(37,211,102,.55);animation:ripple 2.6s ease-out infinite;
+}
+@keyframes ripple{0%{transform:scale(1);opacity:.85}100%{transform:scale(1.65);opacity:0}}
+.wa-float:hover{transform:scale(1.1) rotate(6deg);box-shadow:0 20px 46px -12px rgba(37,211,102,.9)}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center}
+  .hero p.lead{margin-inline:auto}
+  .hero-actions,.stats{justify-content:center}
+  .hero-visual{order:-1}
+  .hero-card{max-width:380px}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+    background:rgba(255,255,255,.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border-color);padding:16px 5%;gap:4px;
+    box-shadow:0 12px 30px -10px rgba(15,23,42,.15);
+  }
+  .nav-links.open a{width:100%;padding:13px 16px;border-radius:12px}
+  .nav-links.open .nav-cta{width:100%;justify-content:center;margin-top:8px}
+  .nav-cta{display:none}
+  .nav-links.open .nav-cta{display:inline-flex}
+
+  .wa-showcase-grid{grid-template-columns:1fr;gap:40px;text-align:center}
+  .wa-showcase-text > p{margin-inline:auto;max-width:520px}
+  .wa-showcase-cta{justify-content:center}
+
+  .comparison-header,
+  .comparison-row,
+  .comparison-footer{grid-template-columns:1.5fr 1fr 1fr}
+  .comparison-header > div,
+  .comparison-row > div,
+  .comparison-footer > div{padding:14px 10px;font-size:.8rem}
+  .comparison-row > div:first-child i{display:none}
+
+  .domain-note{flex-direction:column;gap:12px;padding:20px}
+
+  .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:640px){
+  .comparison-header,
+  .comparison-row,
+  .comparison-footer{grid-template-columns:1.2fr 1fr 1fr}
+  .comparison-header > div,
+  .comparison-row > div,
+  .comparison-footer > div{padding:12px 6px;font-size:.72rem}
+  .comparison-header > div:first-child,
+  .comparison-row > div:first-child{font-size:.78rem}
+  .plan{padding:32px 22px 28px}
+  .plan-price .amount{font-size:2.4rem}
+  .foot-grid{grid-template-columns:1fr;gap:28px}
+  .stats{gap:24px}
+  .stat b{font-size:1.4rem}
+  .wa-float{width:54px;height:54px;right:16px;bottom:16px}
+  .wa-float i{font-size:1.5rem}
+  .portfolio-grid{grid-template-columns:1fr;gap:24px}
+  .project-badge{font-size:.62rem;padding:5px 11px}
+  .brand-logo{width:44px;height:44px}
+  .wa-features{grid-template-columns:1fr}
+  .wa-mockup{transform:perspective(1200px) rotateY(0deg)}
+  .domain-card{padding:28px 22px}
+  .domain-card h3{font-size:1.25rem}
+  .domain-card .url-preview{font-size:.82rem;padding:12px 14px}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .foot-bottom-legal{justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- FONDOS DECORATIVOS -->
+<div class="bg-decoration"></div>
+<div class="bg-grid"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="header">
+  <div class="container nav">
+    <a href="#inicio" class="brand">
+      <div class="brand-logo">
+        <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00b5abdaa5e26a95449d3.png" alt="RED-NR Logo">
+      </div>
+      <div class="brand-text">
+        <b>RED-NR</b>
+        <span>WEB STUDIO</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#dominio">Dominio</a>
+      <a href="#whatsapp">WhatsApp Gratis</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#planes">Planes</a>
+      <a href="terminos.html">Legal</a>
+      <a class="nav-cta" href="https://wa.me/5215587304748?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20planes%20de%20p%C3%A1ginas%20web" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Cotizar ahora
+      </a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="badge"><span class="dot"></span> Páginas web para negocios locales</span>
+      <h1>Tu negocio <span class="grad-text">merece una web</span> que venda por ti</h1>
+      <p class="lead">
+        En <strong style="color:var(--text-main)">RED-NR</strong> diseñamos páginas web profesionales y sistemas automatizados que convierten visitas en clientes. <strong style="color:var(--text-main)">Incluye subdominio gratis</strong> y programa de WhatsApp de por vida.
+      </p>
+      <div class="hero-actions">
+        <a href="#planes" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> Ver planes
+        </a>
+        <a href="https://wa.me/5215587304748?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20mi%20negocio" target="_blank" rel="noopener" class="btn btn-ghost">
+          <i class="fab fa-whatsapp"></i> Hablar por WhatsApp
+        </a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>+50<em>+</em></b><span>Proyectos entregados</span></div>
+        <div class="stat"><b>24<em>/</em>7</b><span>Soporte por WhatsApp</span></div>
+        <div class="stat"><b>100<em>%</em></b><span>Personalizado</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">
+            <i class="fas fa-lock" style="font-size:.55rem;color:#10b981"></i> tu-negocio.rednr.com
+          </div>
+        </div>
+        <div class="hero-card-line"><i class="fas fa-check-circle"></i><span>Sitio web profesional</span></div>
+        <div class="hero-card-line"><i class="fas fa-globe"></i><span>Subdominio rednr.com incluido</span></div>
+        <div class="hero-card-line"><i class="fab fa-whatsapp"></i><span>Botón de WhatsApp integrado</span></div>
+        <div class="hero-card-line"><i class="fas fa-gift"></i><span>Programa WhatsApp gratis</span></div>
+        <div class="hero-card-progress"><div></div></div>
+
+        <div class="hero-card-brand">
+          <div class="mini-logo">
+            <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00b5abdaa5e26a95449d3.png" alt="RED-NR">
+          </div>
+          <div class="txt">
+            <b>Hecho por RED-NR</b>
+            <span>Web Studio · México</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ================= SERVICIOS ================= -->
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Qué hacemos</span>
+      <h2>Todo lo que tu negocio necesita para <span class="grad-text">vender online</span></h2>
+      <p>Diseñamos, desarrollamos y automatizamos. Tú te enfocas en tu negocio, nosotros en la tecnología.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Páginas Web Profesionales</h3>
+        <p>Diseño moderno, responsive y adaptado a tu marca. Optimizado para convertir visitantes en clientes.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fab fa-whatsapp"></i></div>
+        <h3>Integración con WhatsApp</h3>
+        <p>Botones personalizados que abren conversaciones directas con mensajes pre-escritos para tus clientes.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-users-cog"></i></div>
+        <h3>CRM Completo</h3>
+        <p>Gestiona leads, clientes y seguimientos desde un solo panel. No pierdas ninguna oportunidad.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+        <h3>Agenda de Citas Online</h3>
+        <p>Tus clientes reservan solos, con recordatorios automáticos por WhatsApp y correo.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+        <h3>Agentes de IA</h3>
+        <p>Chatbots inteligentes que responden, califican leads y agendan citas 24/7 sin intervención humana.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <h3>Email & WhatsApp Marketing</h3>
+        <p>Campañas automatizadas para fidelizar clientes, reactivar ventas y aumentar tus ingresos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOMINIO ================= -->
+<section class="section domain-section" id="dominio">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Tu web, tu dirección</span>
+      <h2>Elige el dominio que mejor se adapte a <span class="grad-text">tu negocio</span></h2>
+      <p>Con cualquier plan, tu web siempre tendrá una dirección profesional funcionando. Tú decides si prefieres la opción gratuita o comprar tu propio dominio.</p>
+    </div>
+
+    <div class="domain-grid">
+      <div class="domain-card recommended reveal">
+        <span class="domain-tag free"><i class="fas fa-gift"></i> Incluido gratis</span>
+        <div class="domain-icon"><i class="fas fa-globe"></i></div>
+        <h3>Subdominio RED-NR incluido</h3>
+        <div class="url-preview">
+          <i class="fas fa-lock"></i>
+          <span>tunegocio.rednr.com</span>
+        </div>
+        <p class="desc">Te entregamos tu web con una dirección profesional lista para compartir. Funciona perfecto para redes sociales, WhatsApp y tarjetas de presentación.</p>
+        <ul class="domain-features">
+          <li><i class="fas fa-check"></i> Sin costo adicional, siempre incluido</li>
+          <li><i class="fas fa-check"></i> HTTPS/SSL activado automáticamente</li>
+          <li><i class="fas fa-check"></i> Listo en minutos, sin trámites</li>
+          <li><i class="fas fa-check"></i> Ideal para empezar rápido y sin complicaciones</li>
+          <li><i class="fas fa-check"></i> Migrable a dominio propio cuando quieras</li>
+        </ul>
+      </div>
+
+      <div class="domain-card reveal">
+        <span class="domain-tag own"><i class="fas fa-star"></i> Opcional</span>
+        <div class="domain-icon"><i class="fas fa-crown"></i></div>
+        <h3>Tu propio dominio</h3>
+        <div class="url-preview">
+          <i class="fas fa-lock"></i>
+          <span>tunegocio.com</span>
+        </div>
+        <p class="desc">Si quieres una marca aún más sólida, puedes usar tu propio dominio (ej. <strong>tunegocio.com</strong>). Se paga por separado y nosotros lo conectamos a tu web sin costo extra.</p>
+        <ul class="domain-features">
+          <li><i class="fas fa-check"></i> Se paga aparte al proveedor que elijas</li>
+          <li><i class="fas fa-check"></i> Precio varía según el dominio y el registrador</li>
+          <li><i class="fas fa-check"></i> Nosotros lo conectamos a tu web gratis</li>
+          <li><i class="fas fa-check"></i> Recomendado para marcas con más trayectoria</li>
+          <li><i class="fas fa-check"></i> Siempre será propiedad de tu negocio</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="domain-note reveal">
+      <i class="fas fa-info-circle"></i>
+      <p>
+        <strong>Importante:</strong> El plan de <strong>$250 MXN/mes (Esencial)</strong> incluye la página web completa con <strong>subdominio gratuito</strong> (ej. <em>tunegocio.rednr.com</em>). Si prefieres usar tu propio dominio (ej. <em>tunegocio.com</em>), este se contrata por separado con cualquier proveedor (GoDaddy, Namecheap, Hostinger, etc.) y su costo varía según la extensión y disponibilidad. Nosotros nos encargamos de conectarlo a tu web <strong>sin costo adicional</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROGRAMA WHATSAPP GRATIS ================= -->
+<section class="section" id="whatsapp" style="padding-top:20px">
+  <div class="container">
+    <div class="wa-showcase reveal">
+      <div class="wa-showcase-grid">
+        <div class="wa-showcase-text">
+          <span class="wa-badge"><i class="fas fa-gift"></i> Bono exclusivo en ambos planes</span>
+          <h2>Programa de <span class="grad-green">WhatsApp Automatización</span> gratis de por vida</h2>
+          <p>Al contratar cualquier plan con RED-NR te regalamos este programa de PC que te permite <strong style="color:#fff">enviar mensajes masivos personalizados</strong> y contestar automáticamente con <strong style="color:#fff">reglas simples</strong>. Licencia perpetua, sin costos ocultos.</p>
+
+          <div class="wa-features">
+            <div class="wa-feature">
+              <div class="wa-feature-ico"><i class="fas fa-paper-plane"></i></div>
+              <div class="wa-feature-txt">
+                <b>Mensajes masivos</b>
+                <span>Envía a múltiples contactos desde tu PC</span>
+              </div>
+            </div>
+            <div class="wa-feature">
+              <div class="wa-feature-ico"><i class="fas fa-reply-all"></i></div>
+              <div class="wa-feature-txt">
+                <b>Contestador básico</b>
+                <span>Respuestas automáticas por palabra clave</span>
+              </div>
+            </div>
+            <div class="wa-feature">
+              <div class="wa-feature-ico"><i class="fas fa-file-csv"></i></div>
+              <div class="wa-feature-txt">
+                <b>Importa CSV</b>
+                <span>Personaliza con variables automáticas</span>
+              </div>
+            </div>
+            <div class="wa-feature">
+              <div class="wa-feature-ico"><i class="fas fa-calendar-alt"></i></div>
+              <div class="wa-feature-txt">
+                <b>Programación</b>
+                <span>Envía en la fecha y hora que quieras</span>
+              </div>
+            </div>
+            <div class="wa-feature">
+              <div class="wa-feature-ico"><i class="fas fa-image"></i></div>
+              <div class="wa-feature-txt">
+                <b>Adjunta archivos</b>
+                <span>Imágenes, documentos y más</span>
+              </div>
+            </div>
+            <div class="wa-feature">
+              <div class="wa-feature-ico"><i class="fas fa-infinity"></i></div>
+              <div class="wa-feature-txt">
+                <b>Licencia de por vida</b>
+                <span>Sin pagos recurrentes nunca</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wa-showcase-cta">
+            <span class="free-tag"><i class="fas fa-gift"></i> Gratis en Plan Esencial y Premium</span>
+          </div>
+        </div>
+
+        <div class="wa-showcase-visual">
+          <div class="wa-mockup">
+            <div class="wa-mockup-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="title">WhatsApp Automatización · RED-NR</div>
+            </div>
+            <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab0102430b0f957cca3e6ce.jpg" alt="Programa WhatsApp Automatización de RED-NR">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTAFOLIO ================= -->
+<section class="section portfolio-section" id="portafolio">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Trabajos Recientes</span>
+      <h2>Estos son algunos de los <span class="grad-text">proyectos que hemos hecho</span></h2>
+      <p>Resultados reales para negocios reales. Cada sitio es único, diseñado a la medida de la marca y pensado para vender.</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- Proyecto 1: Promo Spa (Premium) -->
+      <article class="project-card reveal">
+        <span class="project-badge premium">
+          <i class="fas fa-crown" style="margin-right:4px"></i> Premium
+        </span>
+        <div class="project-mockup">
+          <div class="project-browser">
+            <div class="project-browser-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="address">promospa.rednr.com</div>
+            </div>
+            <div class="project-image">
+              <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6a74d8226da442d0adc99ff5.jpg" alt="Sitio web Promo Spa" loading="lazy">
+              <div class="project-overlay">
+                <a href="https://promospa.rednr.com" target="_blank" rel="noopener" class="project-view"><i class="fas fa-eye"></i> Ver en vivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category"><i class="fas fa-spa"></i> Spa & Bienestar</span>
+          <h3>Promo Spa</h3>
+          <p>Centro de bienestar y belleza en Nicolás Romero. Sistema completo con agenda de citas online, CRM, agentes de IA y automatizaciones de WhatsApp.</p>
+          <div class="project-tags">
+            <span class="project-tag"><i class="fas fa-calendar-check"></i> Citas online</span>
+            <span class="project-tag"><i class="fas fa-robot"></i> IA 24/7</span>
+            <span class="project-tag"><i class="fas fa-users-cog"></i> CRM</span>
+            <span class="project-tag"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 2: NEXORA MX (Premium) -->
+      <article class="project-card reveal">
+        <span class="project-badge premium">
+          <i class="fas fa-crown" style="margin-right:4px"></i> Premium
+        </span>
+        <div class="project-mockup">
+          <div class="project-browser">
+            <div class="project-browser-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="address">nexora.rednr.com</div>
+            </div>
+            <div class="project-image">
+              <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00f8330b0f957cca3d9e8.jpg" alt="Sitio web NEXORA MX" loading="lazy">
+              <div class="project-overlay">
+                <a href="https://nexora.rednr.com" target="_blank" rel="noopener" class="project-view"><i class="fas fa-eye"></i> Ver en vivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category"><i class="fas fa-shopping-bag"></i> Tienda Digital</span>
+          <h3>NEXORA MX</h3>
+          <p>Tienda digital de tecnología y gadgets. Catálogo completo con 22+ productos, filtros por categoría, carrito de WhatsApp y comunidad de ofertas.</p>
+          <div class="project-tags">
+            <span class="project-tag"><i class="fas fa-shopping-cart"></i> Carrito</span>
+            <span class="project-tag"><i class="fas fa-filter"></i> Filtros</span>
+            <span class="project-tag"><i class="fas fa-users"></i> Comunidad</span>
+            <span class="project-tag"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 3: Delicias al Fuego (Estándar) -->
+      <article class="project-card reveal">
+        <span class="project-badge standard">
+          <i class="fas fa-globe" style="margin-right:4px"></i> Esencial
+        </span>
+        <div class="project-mockup">
+          <div class="project-browser">
+            <div class="project-browser-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="address">restejm.rednr.com</div>
+            </div>
+            <div class="project-image">
+              <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00f11bdaa5e26a954a7b2.jpg" alt="Sitio web Delicias al Fuego" loading="lazy">
+              <div class="project-overlay">
+                <a href="https://restejm.rednr.com" target="_blank" rel="noopener" class="project-view"><i class="fas fa-eye"></i> Ver en vivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category"><i class="fas fa-utensils"></i> Restaurante</span>
+          <h3>Delicias al Fuego</h3>
+          <p>Menú digital para restaurante. Carta completa con 17 platillos, carrito de pedidos, selección de salsas y envío directo por WhatsApp.</p>
+          <div class="project-tags">
+            <span class="project-tag"><i class="fas fa-utensils"></i> Menú</span>
+            <span class="project-tag"><i class="fas fa-shopping-cart"></i> Carrito</span>
+            <span class="project-tag"><i class="fas fa-pepper-hot"></i> Salsas</span>
+            <span class="project-tag"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 4: Dulce Gusto (Estándar) -->
+      <article class="project-card reveal">
+        <span class="project-badge standard">
+          <i class="fas fa-globe" style="margin-right:4px"></i> Esencial
+        </span>
+        <div class="project-mockup">
+          <div class="project-browser">
+            <div class="project-browser-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="address">dulcegusto.rednr.com</div>
+            </div>
+            <div class="project-image">
+              <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6a74d81cb21ebe7e5906463a.jpg" alt="Sitio web Dulce Gusto" loading="lazy">
+              <div class="project-overlay">
+                <a href="https://dulcegusto.rednr.com" target="_blank" rel="noopener" class="project-view"><i class="fas fa-eye"></i> Ver en vivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category"><i class="fas fa-cookie-bite"></i> Repostería Artesanal</span>
+          <h3>Dulce Gusto</h3>
+          <p>Galletas gourmet 100% artesanales. Página web con galería de productos, formulario de captación de leads y pedidos directos por WhatsApp.</p>
+          <div class="project-tags">
+            <span class="project-tag"><i class="fas fa-paper-plane"></i> Formulario</span>
+            <span class="project-tag"><i class="fas fa-images"></i> Galería</span>
+            <span class="project-tag"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 5: Cobreal (Estándar) -->
+      <article class="project-card reveal">
+        <span class="project-badge standard">
+          <i class="fas fa-globe" style="margin-right:4px"></i> Esencial
+        </span>
+        <div class="project-mockup">
+          <div class="project-browser">
+            <div class="project-browser-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="address">cobreal.com.mx</div>
+            </div>
+            <div class="project-image">
+              <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6a74d8968684435c5809cebe.jpg" alt="Sitio web Corporativo Cobreal" loading="lazy">
+              <div class="project-overlay">
+                <a href="https://cobreal.com.mx/" target="_blank" rel="noopener" class="project-view"><i class="fas fa-eye"></i> Ver en vivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category"><i class="fas fa-building"></i> Corporativo</span>
+          <h3>Corporativo Cobreal</h3>
+          <p>Empresa de recuperación de recursos económicos. Sitio web corporativo con secciones institucionales, valores, prácticas y formulario de contacto.</p>
+          <div class="project-tags">
+            <span class="project-tag"><i class="fas fa-building"></i> Corporativo</span>
+            <span class="project-tag"><i class="fas fa-file-alt"></i> Institucional</span>
+            <span class="project-tag"><i class="fas fa-envelope"></i> Contacto</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="portfolio-cta reveal">
+      <p>¿Quieres que tu negocio sea el <strong>próximo caso de éxito</strong>?</p>
+      <a href="https://wa.me/5215587304748?text=Hola%2C%20vi%20su%20portafolio%20y%20quiero%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener" class="btn btn-primary">
+        <i class="fab fa-whatsapp"></i> Quiero mi página web
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANES ================= -->
+<section class="section" id="planes">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Nuestros Planes</span>
+      <h2>Elige el plan perfecto para <span class="grad-text">tu negocio</span></h2>
+      <p>Dos opciones claras: comienza simple o automatiza todo. <strong>Ambos incluyen subdominio gratis y programa de WhatsApp de por vida.</strong></p>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Plan Esencial -->
+      <div class="plan reveal">
+        <div class="plan-icon"><i class="fas fa-globe"></i></div>
+        <h3>Plan Esencial</h3>
+        <p class="plan-subtitle">Ideal para negocios que inician su presencia online y quieren captar clientes por WhatsApp.</p>
+
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">250</span>
+          <span class="period">MXN / mes</span>
+        </div>
+        <p class="plan-note">Sin costo de instalación · Cancela cuando quieras</p>
+
+        <div class="plan-domain">
+          <i class="fas fa-globe"></i>
+          <span>Incluye subdominio <strong>tunegocio.rednr.com</strong></span>
+        </div>
+
+        <div class="plan-bonus">
+          <i class="fas fa-gift"></i>
+          <div class="bonus-txt">
+            <b>Programa WhatsApp Automatización</b>
+            <span>Envío masivo + contestador básico. Licencia de por vida.</span>
+          </div>
+        </div>
+
+        <div class="plan-divider"></div>
+
+        <ul class="plan-features">
+          <li><i class="fas fa-check"></i> Página web profesional (hasta 6 secciones)</li>
+          <li><i class="fas fa-check"></i> Diseño responsive (móvil, tablet, PC)</li>
+          <li><i class="fas fa-check"></i> Botón de WhatsApp personalizado</li>
+          <li><i class="fas fa-check"></i> Formulario de contacto a Trello/Email</li>
+          <li><i class="fas fa-check"></i> Galería de imágenes y videos</li>
+          <li><i class="fas fa-check"></i> Menú de navegación fijo</li>
+          <li><i class="fas fa-check"></i> Integración de redes sociales</li>
+          <li class="highlight"><i class="fas fa-globe"></i> <strong>Subdominio rednr.com gratis</strong> (dominio propio opcional)</li>
+          <li class="highlight"><i class="fas fa-gift"></i> <strong>Bono:</strong> Programa WhatsApp gratis de por vida</li>
+          <li class="disabled"><i class="fas fa-times"></i> CRM y gestión de clientes</li>
+          <li class="disabled"><i class="fas fa-times"></i> Agenda de citas online</li>
+          <li class="disabled"><i class="fas fa-times"></i> Automatizaciones y Agentes IA</li>
+        </ul>
+
+        <a href="https://wa.me/5215587304748?text=Hola%2C%20me%20interesa%20el%20Plan%20Esencial%20de%20250%20MXN%20al%20mes" target="_blank" rel="noopener" class="plan-cta secondary">
+          <i class="fab fa-whatsapp"></i> Contratar Plan Esencial
+        </a>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan featured reveal">
+        <span class="plan-tag">Más popular</span>
+        <div class="plan-icon"><i class="fas fa-crown"></i></div>
+        <h3>Plan Premium</h3>
+        <p class="plan-subtitle">Solución completa con CRM, citas, IA y automatizaciones. Para negocios que quieren escalar.</p>
+
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">1,499</span>
+          <span class="period">MXN / mes</span>
+        </div>
+        <p class="plan-note">Incluye setup inicial · Soporte prioritario</p>
+
+        <div class="plan-domain">
+          <i class="fas fa-globe"></i>
+          <span>Incluye subdominio <strong>tunegocio.rednr.com</strong></span>
+        </div>
+
+        <div class="plan-bonus">
+          <i class="fas fa-gift"></i>
+          <div class="bonus-txt">
+            <b>Programa WhatsApp Automatización</b>
+            <span>Envío masivo + contestador básico. Licencia de por vida.</span>
+          </div>
+        </div>
+
+        <div class="plan-divider"></div>
+
+        <ul class="plan-features">
+          <li><i class="fas fa-check"></i> Todo lo del Plan Esencial</li>
+          <li><i class="fas fa-check"></i> CRM completo (leads, clientes, seguimiento)</li>
+          <li><i class="fas fa-check"></i> Agenda de citas online automatizada</li>
+          <li><i class="fas fa-check"></i> Recordatorios por WhatsApp y Email</li>
+          <li><i class="fas fa-check"></i> Agentes de IA (chatbot 24/7)</li>
+          <li><i class="fas fa-check"></i> Automatizaciones de WhatsApp Marketing</li>
+          <li><i class="fas fa-check"></i> Constructor de embudos de venta (Funnels)</li>
+          <li><i class="fas fa-check"></i> Email y SMS Marketing</li>
+          <li><i class="fas fa-check"></i> Panel de analíticas y conversiones</li>
+          <li class="highlight"><i class="fas fa-globe"></i> <strong>Subdominio rednr.com gratis</strong> (dominio propio opcional)</li>
+          <li class="highlight"><i class="fas fa-gift"></i> <strong>Bono:</strong> Programa WhatsApp gratis de por vida</li>
+        </ul>
+
+        <a href="https://wa.me/5215587304748?text=Hola%2C%20me%20interesa%20el%20Plan%20Premium%20con%20CRM%2C%20IA%20y%20automatizaciones" target="_blank" rel="noopener" class="plan-cta primary">
+          <i class="fas fa-rocket"></i> Contratar Plan Premium
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARATIVA ================= -->
+<section class="section" id="comparativa" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Comparativa</span>
+      <h2>Compara los planes <span class="grad-text">lado a lado</span></h2>
+      <p>Todo lo que incluye cada paquete, sin letras chiquitas. Elige con total transparencia.</p>
+    </div>
+
+    <div class="comparison reveal">
+      <div class="comparison-header">
+        <div>Característica</div>
+        <div class="col-basic">Plan Esencial</div>
+        <div class="col-premium">Plan Premium</div>
+      </div>
+
+      <div class="comparison-row domain-row">
+        <div><i class="fas fa-globe"></i> <strong>Subdominio rednr.com incluido</strong></div>
+        <div class="col-basic"><span class="text-badge free">Gratis</span></div>
+        <div class="col-premium"><span class="text-badge free">Gratis</span></div>
+      </div>
+      <div class="comparison-row domain-row">
+        <div><i class="fas fa-crown"></i> Dominio propio (ej. tunegocio.com)</div>
+        <div class="col-basic"><span class="text-badge paid">Opcional</span></div>
+        <div class="col-premium"><span class="text-badge paid">Opcional</span></div>
+      </div>
+      <div class="comparison-row highlight-row">
+        <div><i class="fas fa-gift"></i> <strong>Programa WhatsApp gratis de por vida</strong></div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-laptop-code"></i> Página web profesional</div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-mobile-alt"></i> Diseño responsive</div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fab fa-whatsapp"></i> Botón de WhatsApp personalizado</div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-paper-plane"></i> Formulario de contacto</div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-images"></i> Galería de imágenes/videos</div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-shopping-cart"></i> Carrito de pedido por WhatsApp</div>
+        <div class="col-basic"><i class="fas fa-check-circle yes"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-users-cog"></i> CRM completo</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-calendar-check"></i> Agenda de citas online</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-bell"></i> Recordatorios automáticos (WhatsApp/Email)</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-robot"></i> Agentes de IA (Chatbot 24/7)</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-envelope-open-text"></i> Email & WhatsApp Marketing</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-filter"></i> Constructor de embudos (Funnels)</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+      <div class="comparison-row">
+        <div><i class="fas fa-chart-line"></i> Panel de analíticas</div>
+        <div class="col-basic"><i class="fas fa-times no"></i></div>
+        <div class="col-premium"><i class="fas fa-check-circle yes"></i></div>
+      </div>
+
+      <div class="comparison-footer">
+        <div></div>
+        <div class="col-basic">
+          <a href="https://wa.me/5215587304748?text=Hola%2C%20me%20interesa%20el%20Plan%20Esencial" target="_blank" rel="noopener" class="cta-mini">Contratar Esencial</a>
+        </div>
+        <div class="col-premium">
+          <a href="https://wa.me/5215587304748?text=Hola%2C%20me%20interesa%20el%20Plan%20Premium" target="_blank" rel="noopener" class="cta-mini">Contratar Premium</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESO ================= -->
+<section class="section" id="proceso">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Cómo trabajamos</span>
+      <h2>Tu web lista en <span class="grad-text">menos de una semana</span></h2>
+      <p>Un proceso simple, transparente y sin complicaciones. Tú nos cuentas tu idea, nosotros la hacemos realidad.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card reveal">
+        <div class="process-num">01</div>
+        <h3>Contacto y Briefing</h3>
+        <p>Nos escribes por WhatsApp, platicamos sobre tu negocio y definimos el plan ideal.</p>
+      </div>
+      <div class="process-card reveal">
+        <div class="process-num">02</div>
+        <h3>Diseño y Desarrollo</h3>
+        <p>Nuestro equipo diseña tu web personalizada con tu logo, colores y contenido.</p>
+      </div>
+      <div class="process-card reveal">
+        <div class="process-num">03</div>
+        <h3>Revisión y Ajustes</h3>
+        <p>Te mostramos el resultado y hacemos los ajustes necesarios hasta que quedes feliz.</p>
+      </div>
+      <div class="process-card reveal">
+        <div class="process-num">04</div>
+        <h3>Publicación y Soporte</h3>
+        <p>Publicamos tu web con subdominio listo, te damos el programa de WhatsApp y soporte continuo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="section">
+  <div class="container">
+    <div class="cta-final reveal">
+      <div class="cta-inner">
+        <span class="sec-tag">Empieza hoy</span>
+        <h2>¿Listo para llevar tu negocio al <span class="grad-text">siguiente nivel</span>?</h2>
+        <p>Escríbenos por WhatsApp y en minutos te decimos cuál plan es el mejor para ti. Incluye subdominio gratis y programa de WhatsApp de por vida.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/5215587304748?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20planes%20de%20p%C3%A1ginas%20web" target="_blank" rel="noopener" class="btn btn-primary">
+            <i class="fab fa-whatsapp"></i> Cotizar mi página web
+          </a>
+          <a href="#planes" class="btn btn-ghost">
+            <i class="fas fa-layer-group"></i> Ver planes de nuevo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="foot-brand-top">
+          <div class="brand-logo">
+            <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00b5abdaa5e26a95449d3.png" alt="RED-NR Logo">
+          </div>
+          <div>
+            <strong style="font-family:var(--font-display);font-size:1.1rem;color:var(--text-main);display:block">RED-NR</strong>
+            <span style="font-size:.7rem;letter-spacing:3px;color:var(--color-primary);font-weight:600">WEB STUDIO</span>
+          </div>
+        </div>
+        <p>Diseño web profesional y automatización para negocios locales en México. Impulsamos tu presencia digital.</p>
+        <div class="foot-social">
+          <a href="https://wa.me/5215587304748" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:info@rednr.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://rednr.com" aria-label="Sitio web"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Navegación</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#dominio">Dominio</a>
+        <a href="#whatsapp">WhatsApp Gratis</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#planes">Planes</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Servicios</h4>
+        <a href="#servicios"><i class="fas fa-chevron-right"></i>Páginas Web</a>
+        <a href="#servicios"><i class="fas fa-chevron-right"></i>CRM Completo</a>
+        <a href="#servicios"><i class="fas fa-chevron-right"></i>Agenda de Citas</a>
+        <a href="#servicios"><i class="fas fa-chevron-right"></i>Agentes de IA</a>
+        <a href="#servicios"><i class="fas fa-chevron-right"></i>Marketing Digital</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="terminos.html"><i class="fas fa-file-contract"></i>Términos y Condiciones</a>
+        <a href="terminos.html#seccion-3"><i class="fas fa-shield-alt"></i>Aviso de Privacidad</a>
+        <a href="terminos.html#seccion-13"><i class="fas fa-user-shield"></i>Acuerdo de Datos (DPA)</a>
+        <a href="terminos.html#seccion-9-1"><i class="fas fa-wallet"></i>Política del Monedero</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> <b>RED-NR</b> · Dan Benjamin Hernández Cruz. Todos los derechos reservados.</span>
+      <div class="foot-bottom-legal">
+        <a href="terminos.html">Términos y Condiciones</a>
+        <span style="opacity:.4">·</span>
+        <a href="terminos.html#seccion-3">Aviso de Privacidad</a>
+        <span style="opacity:.4">·</span>
+        <a href="mailto:info@rednr.com">info@rednr.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= WHATSAPP FLOTANTE ================= -->
+<a class="wa-float" href="https://wa.me/5215587304748?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20planes%20de%20p%C3%A1ginas%20web" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  // Header scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navLinks.classList.remove('open');
+  }));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Marquee
+  const marqueeItems = [
+    'Páginas Web Profesionales',
+    'Subdominio Gratis rednr.com',
+    'Botón de WhatsApp Personalizado',
+    'Programa WhatsApp Gratis',
+    'CRM Completo',
+    'Agenda de Citas Online',
+    'Agentes de IA 24/7',
+    'Email Marketing',
+    'Diseño Responsive'
+  ];
+  const track = document.getElementById('marqueeTrack');
+  const icon = '<i class="fas fa-star"></i>';
+  track.innerHTML = [...marqueeItems, ...marqueeItems]
+    .map(t => `<span class="marquee-item">${icon}${t}</span>`).join('');
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>

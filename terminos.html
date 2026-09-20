@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing de Proyecto | RED-NR</title>
+<meta name="description" content="Cuéntanos sobre tu negocio para crear tu página web profesional con RED-NR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" type="image/png" href="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00b5abdaa5e26a95449d3.png">
+<style>
+/* ================= VARIABLES ================= */
+:root{
+  --bg-primary:#FFFFFF; --bg-soft:#F8FAFC; --bg-subtle:#F1F5F9;
+  --border-color:#E2E8F0; --border-strong:#CBD5E1;
+  --color-primary:#2563EB; --color-accent:#06B6D4;
+  --color-primary-soft:#EFF6FF; --color-accent-soft:#ECFEFF;
+  --text-main:#0F172A; --text-body:#334155; --text-muted:#64748B;
+  --color-success:#10B981; --color-warning:#F59E0B; --color-danger:#EF4444;
+  --brand-gradient:linear-gradient(135deg,#2563EB 0%,#06B6D4 100%);
+  --brand-gradient-soft:linear-gradient(135deg,#EFF6FF 0%,#ECFEFF 100%);
+  --radius:18px; --radius-sm:12px;
+  --shadow-sm:0 2px 12px -4px rgba(15,23,42,.06);
+  --shadow-md:0 12px 40px -12px rgba(15,23,42,.12);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
+
+/* ================= RESET ================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-primary);
+  color:var(--text-body);
+  line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit;font-size:inherit}
+::selection{background:var(--color-accent);color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg-soft)}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:2px solid var(--bg-soft)}
+::-webkit-scrollbar-thumb:hover{background:var(--color-primary)}
+
+/* ================= UTILIDADES ================= */
+.container{width:min(900px,92%);margin-inline:auto}
+.grad-text{background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* ================= BACKGROUND ================= */
+.bg-decoration{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.bg-decoration::before{
+  content:"";position:absolute;top:-200px;left:-200px;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(37,99,235,.08),transparent 70%);filter:blur(60px);
+}
+.bg-decoration::after{
+  content:"";position:absolute;bottom:-200px;right:-200px;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(6,182,212,.08),transparent 70%);filter:blur(60px);
+}
+.bg-grid{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(15,23,42,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.028) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 80%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 80%);
+}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;
+  transition:background .4s var(--ease),backdrop-filter .4s,border-color .4s,padding .4s var(--ease),box-shadow .4s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(255,255,255,.85);backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-bottom-color:var(--border-color);padding:8px 0;
+  box-shadow:0 2px 20px -8px rgba(15,23,42,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{width:52px;height:52px;display:grid;place-items:center;transition:transform .5s var(--ease),filter .5s var(--ease);flex-shrink:0}
+.brand-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(37,99,235,.35))}
+.brand:hover .brand-logo{transform:rotate(-6deg) scale(1.08);filter:drop-shadow(0 10px 22px rgba(6,182,212,.55))}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text b{font-family:var(--font-display);font-size:1.15rem;font-weight:700;letter-spacing:1px;color:var(--text-main)}
+.brand-text span{font-size:.6rem;letter-spacing:4px;color:var(--color-primary);font-weight:600;margin-top:3px}
+
+.nav-back{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:99px;font-size:.88rem;font-weight:600;
+  background:#fff;color:var(--text-main);border:1px solid var(--border-color);
+  box-shadow:var(--shadow-sm);
+  transition:all .35s var(--ease);
+}
+.nav-back:hover{background:var(--bg-soft);border-color:var(--color-primary);color:var(--color-primary);transform:translateX(-3px)}
+.nav-back i{font-size:.85rem}
+
+/* ================= PAGE HERO ================= */
+.page-hero{
+  padding:150px 0 40px;text-align:center;position:relative;overflow:hidden;
+}
+.page-hero::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:900px;height:500px;
+  background:radial-gradient(ellipse,rgba(37,99,235,.10),transparent 70%);
+  filter:blur(60px);pointer-events:none;
+}
+.page-hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.page-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 16px;border-radius:99px;font-size:.72rem;font-weight:600;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--color-primary);
+  background:var(--color-primary-soft);border:1px solid rgba(37,99,235,.2);
+  margin-bottom:22px;
+}
+.page-badge i{font-size:.8rem}
+.page-hero h1{
+  font-family:var(--font-display);
+  font-size:clamp(1.9rem,4.5vw,3rem);
+  line-height:1.1;font-weight:700;letter-spacing:-1px;
+  color:var(--text-main);margin-bottom:18px;
+}
+.page-hero p{font-size:1.02rem;color:var(--text-muted);max-width:600px;margin:0 auto}
+
+/* Barra de progreso */
+.progress-wrap{
+  max-width:720px;margin:36px auto 0;
+  display:flex;flex-direction:column;gap:10px;
+  position:relative;z-index:1;
+}
+.progress-info{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.78rem;color:var(--text-muted);font-weight:500;
+}
+.progress-info strong{color:var(--text-main);font-family:var(--font-display)}
+.progress-bar{
+  height:8px;background:var(--bg-subtle);border-radius:99px;overflow:hidden;
+  position:relative;
+}
+.progress-fill{
+  height:100%;width:0%;border-radius:99px;
+  background:var(--brand-gradient);
+  transition:width .6s var(--ease);
+  position:relative;
+  box-shadow:0 0 12px rgba(37,99,235,.5);
+}
+.progress-fill::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  animation:shimmer 2s infinite;
+}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* ================= FORMULARIO ================= */
+.form-wrap{
+  padding:40px 0 80px;
+  position:relative;z-index:1;
+}
+.form-card{
+  background:#fff;
+  border:1px solid var(--border-color);
+  border-radius:24px;
+  padding:40px 44px;
+  box-shadow:0 20px 60px -20px rgba(15,23,42,.12);
+  position:relative;
+  overflow:hidden;
+}
+.form-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:var(--brand-gradient);
+}
+
+/* Sección del formulario */
+.form-section{
+  margin-bottom:44px;
+  padding-bottom:44px;
+  border-bottom:1px dashed var(--border-color);
+}
+.form-section:last-of-type{border-bottom:none;padding-bottom:0;margin-bottom:32px}
+
+.section-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:28px;
+}
+.section-icon{
+  width:48px;height:48px;
+  border-radius:14px;
+  background:var(--brand-gradient);
+  color:#fff;
+  display:grid;place-items:center;
+  font-size:1.15rem;flex-shrink:0;
+  box-shadow:0 10px 24px -10px var(--color-primary);
+}
+.section-head-txt{flex:1;min-width:0}
+.section-head-txt h2{
+  font-family:var(--font-display);
+  font-size:1.15rem;font-weight:700;
+  color:var(--text-main);line-height:1.25;
+  margin-bottom:2px;
+}
+.section-head-txt p{
+  font-size:.82rem;color:var(--text-muted);line-height:1.4;
+}
+
+/* Campos */
+.field-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:18px;
+}
+.field-row.single{grid-template-columns:1fr}
+.field-row.triple{grid-template-columns:1fr 1fr 1fr}
+
+.field{
+  display:flex;flex-direction:column;gap:7px;
+}
+.field label{
+  font-size:.82rem;font-weight:600;
+  color:var(--text-main);
+  display:flex;align-items:center;gap:6px;
+}
+.field label .req{color:var(--color-danger);font-size:.9rem}
+.field label .opt{
+  font-size:.68rem;font-weight:500;color:var(--text-muted);
+  background:var(--bg-subtle);padding:2px 8px;border-radius:99px;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"],
+.field input[type="url"],
+.field input[type="number"],
+.field textarea,
+.field select{
+  width:100%;
+  padding:13px 16px;
+  border:1.5px solid var(--border-color);
+  border-radius:12px;
+  background:var(--bg-soft);
+  color:var(--text-main);
+  font-size:.92rem;
+  transition:all .3s var(--ease);
+  outline:none;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  background:#fff;
+  border-color:var(--color-primary);
+  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+.field input::placeholder,
+.field textarea::placeholder{color:var(--text-muted)}
+.field textarea{
+  min-height:110px;resize:vertical;line-height:1.55;
+}
+.field select{
+  cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:16px;
+  padding-right:40px;
+}
+.field .hint{font-size:.74rem;color:var(--text-muted);line-height:1.4}
+
+/* Radio / Checkbox Cards */
+.option-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
+.option-card{
+  position:relative;
+  padding:16px 18px;
+  background:var(--bg-soft);
+  border:1.5px solid var(--border-color);
+  border-radius:14px;
+  cursor:pointer;
+  transition:all .3s var(--ease);
+  display:flex;align-items:flex-start;gap:12px;
+}
+.option-card:hover{
+  border-color:var(--color-primary);
+  background:#fff;
+  transform:translateY(-2px);
+}
+/* Ocultamos el input pero SIN pointer-events:none */
+.option-card input[type="radio"],
+.option-card input[type="checkbox"]{
+  position:absolute;
+  opacity:0;
+  width:1px;height:1px;
+  overflow:hidden;
+}
+.option-card .opt-icon{
+  width:38px;height:38px;flex-shrink:0;
+  border-radius:10px;
+  background:#fff;
+  border:1.5px solid var(--border-color);
+  display:grid;place-items:center;
+  color:var(--color-primary);font-size:.95rem;
+  transition:all .3s var(--ease);
+}
+.option-card .opt-info{flex:1;min-width:0}
+.option-card .opt-info b{
+  display:block;font-size:.88rem;font-weight:600;
+  color:var(--text-main);margin-bottom:2px;
+}
+.option-card .opt-info span{
+  font-size:.76rem;color:var(--text-muted);line-height:1.35;display:block;
+}
+.option-card.selected{
+  background:var(--brand-gradient-soft);
+  border-color:var(--color-primary);
+  box-shadow:0 8px 22px -12px var(--color-primary);
+}
+.option-card.selected .opt-icon{
+  background:var(--brand-gradient);
+  color:#fff;border-color:transparent;
+}
+
+/* Checkboxes pequeños */
+.check-list{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.check-pill{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px;
+  background:var(--bg-soft);
+  border:1.5px solid var(--border-color);
+  border-radius:99px;
+  cursor:pointer;
+  font-size:.85rem;color:var(--text-main);font-weight:500;
+  transition:all .3s var(--ease);
+  user-select:none;
+}
+.check-pill:hover{
+  border-color:var(--color-primary);
+  background:#fff;
+}
+/* Ocultamos el input pero SIN pointer-events:none */
+.check-pill input{
+  position:absolute;
+  opacity:0;
+  width:1px;height:1px;
+  overflow:hidden;
+}
+.check-pill i{color:var(--text-muted);font-size:.75rem;transition:color .3s}
+.check-pill.selected{
+  background:var(--brand-gradient-soft);
+  border-color:var(--color-primary);
+  color:var(--color-primary);
+}
+.check-pill.selected i{color:var(--color-primary)}
+
+/* Aceptación de términos */
+.terms-box{
+  padding:20px 22px;
+  background:linear-gradient(135deg,rgba(37,99,235,.05),rgba(6,182,212,.03));
+  border:1.5px solid rgba(37,99,235,.15);
+  border-radius:14px;
+  display:flex;align-items:flex-start;gap:14px;
+  cursor:pointer;
+  transition:all .3s var(--ease);
+  position:relative;
+}
+.terms-box:hover{border-color:rgba(37,99,235,.3);background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(6,182,212,.05))}
+/* Ocultamos el input pero SIN pointer-events:none */
+.terms-box input{
+  position:absolute;
+  opacity:0;
+  width:1px;height:1px;
+  overflow:hidden;
+}
+.terms-box .check-visual{
+  width:22px;height:22px;flex-shrink:0;
+  border-radius:6px;
+  border:2px solid var(--border-strong);
+  background:#fff;
+  display:grid;place-items:center;
+  transition:all .3s var(--ease);
+  margin-top:2px;
+}
+.terms-box .check-visual i{
+  color:#fff;font-size:.7rem;opacity:0;transform:scale(0);
+  transition:all .3s var(--ease);
+}
+.terms-box.selected .check-visual{
+  background:var(--brand-gradient);border-color:transparent;
+}
+.terms-box.selected .check-visual i{opacity:1;transform:scale(1)}
+.terms-box.selected{
+  background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(6,182,212,.06));
+  border-color:var(--color-primary);
+}
+.terms-box p{
+  font-size:.85rem;color:var(--text-body);line-height:1.55;margin:0;
+}
+.terms-box a{
+  color:var(--color-primary);font-weight:600;
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;
+}
+.terms-box a:hover{color:var(--color-hover)}
+
+/* ================= BOTÓN ENVIAR ================= */
+.form-actions{
+  display:flex;flex-wrap:wrap;gap:14px;
+  align-items:center;justify-content:space-between;
+  padding-top:12px;
+}
+.btn-submit{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 34px;border-radius:99px;
+  font-weight:600;font-size:.95rem;
+  background:var(--brand-gradient);color:#fff;
+  box-shadow:0 14px 34px -12px var(--color-primary);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),filter .4s;
+  position:relative;overflow:hidden;
+  cursor:pointer;
+}
+.btn-submit::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.35) 50%,transparent 75%);
+  transform:translateX(-120%);transition:transform .9s var(--ease);
+}
+.btn-submit:hover::after{transform:translateX(120%)}
+.btn-submit:hover{transform:translateY(-3px);box-shadow:0 20px 44px -12px var(--color-accent);filter:brightness(1.05)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;filter:none}
+
+.form-info{
+  display:flex;align-items:center;gap:10px;
+  font-size:.8rem;color:var(--text-muted);
+  flex:1;
+}
+.form-info i{color:var(--color-primary);font-size:.9rem}
+
+/* ================= MODAL DE ÉXITO ================= */
+.success-modal{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(15,23,42,.75);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;visibility:hidden;
+  transition:opacity .4s var(--ease),visibility .4s var(--ease);
+}
+.success-modal.open{opacity:1;visibility:visible}
+.success-card{
+  background:#fff;
+  border-radius:24px;
+  max-width:480px;width:100%;
+  padding:44px 36px 36px;
+  text-align:center;
+  box-shadow:0 40px 80px -20px rgba(0,0,0,.5);
+  transform:scale(.92) translateY(20px);
+  transition:transform .5s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.success-modal.open .success-card{transform:scale(1) translateY(0)}
+.success-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:var(--brand-gradient);
+}
+.success-icon{
+  width:80px;height:80px;margin:0 auto 22px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#10B981,#06B6D4);
+  display:grid;place-items:center;
+  color:#fff;font-size:2rem;
+  box-shadow:0 16px 40px -12px rgba(16,185,129,.6);
+  animation:successPop .6s var(--ease);
+}
+@keyframes successPop{
+  0%{transform:scale(0) rotate(-180deg);opacity:0}
+  60%{transform:scale(1.1) rotate(10deg)}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+.success-card h2{
+  font-family:var(--font-display);
+  font-size:1.5rem;font-weight:700;
+  color:var(--text-main);margin-bottom:12px;
+}
+.success-card p{
+  font-size:.92rem;color:var(--text-muted);line-height:1.65;margin-bottom:26px;
+}
+.success-actions{
+  display:flex;flex-direction:column;gap:10px;
+}
+.btn-wa-open{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 26px;border-radius:14px;
+  font-weight:600;font-size:.92rem;
+  background:linear-gradient(135deg,#25D366,#128C4A);
+  color:#fff;
+  box-shadow:0 12px 30px -12px rgba(37,211,102,.6);
+  transition:all .4s var(--ease);
+}
+.btn-wa-open:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.btn-close-success{
+  padding:12px 26px;border-radius:14px;
+  font-weight:600;font-size:.88rem;
+  background:var(--bg-soft);color:var(--text-main);
+  border:1px solid var(--border-color);
+  transition:all .3s var(--ease);
+}
+.btn-close-success:hover{background:var(--bg-subtle);border-color:var(--border-strong)}
+
+/* ================= WHATSAPP FLOTANTE ================= */
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:90;
+  width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#25d366,#128c4a);color:#fff;
+  box-shadow:0 14px 38px -12px rgba(37,211,102,.6);
+  transition:transform .45s var(--ease),box-shadow .45s;
+}
+.wa-float i{font-size:1.7rem}
+.wa-float::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(37,211,102,.55);animation:ripple 2.6s ease-out infinite;
+}
+@keyframes ripple{0%{transform:scale(1);opacity:.85}100%{transform:scale(1.65);opacity:0}}
+.wa-float:hover{transform:scale(1.1) rotate(6deg);box-shadow:0 20px 46px -12px rgba(37,211,102,.9)}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .form-card{padding:28px 24px}
+  .field-row,
+  .field-row.triple{grid-template-columns:1fr}
+  .page-hero{padding:130px 0 30px}
+  .nav-back span{display:none}
+  .nav-back{padding:10px 14px}
+  .form-actions{flex-direction:column-reverse;align-items:stretch}
+  .btn-submit{width:100%}
+  .form-info{justify-content:center;text-align:center}
+}
+@media(max-width:640px){
+  .form-card{padding:24px 20px}
+  .section-head{gap:12px}
+  .section-icon{width:42px;height:42px;font-size:1rem}
+  .section-head-txt h2{font-size:1rem}
+  .wa-float{width:54px;height:54px;right:16px;bottom:16px}
+  .wa-float i{font-size:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- FONDOS -->
+<div class="bg-decoration"></div>
+<div class="bg-grid"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="header">
+  <div class="container nav" style="max-width:900px">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">
+        <img src="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ab00b5abdaa5e26a95449d3.png" alt="RED-NR">
+      </div>
+      <div class="brand-text">
+        <b>RED-NR</b>
+        <span>WEB STUDIO</span>
+      </div>
+    </a>
+    <a href="index.html" class="nav-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Volver al inicio</span>
+    </a>
+  </div>
+</header>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="page-badge"><i class="fas fa-clipboard-list"></i> Briefing de proyecto</span>
+    <h1>Cuéntanos sobre <span class="grad-text">tu negocio</span></h1>
+    <p>Completa este formulario para que podamos diseñar la página web perfecta para tu marca. Toma unos 5 minutos y todo llega directo a nuestro WhatsApp.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span><strong id="progressPercent">0%</strong> completado</span>
+        <span id="progressText">Empecemos ✨</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO ================= -->
+<section class="form-wrap">
+  <div class="container">
+    <form id="briefingForm" class="form-card" novalidate>
+
+      <!-- ============ SECCIÓN 1: DATOS DEL NEGOCIO ============ -->
+      <div class="form-section">
+        <div class="section-head">
+          <div class="section-icon"><i class="fas fa-store"></i></div>
+          <div class="section-head-txt">
+            <h2>1. Datos de tu negocio</h2>
+            <p>Información básica para conocerte</p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Nombre del negocio <span class="req">*</span></label>
+            <input type="text" name="nombre_negocio" placeholder="Ej: Dulce Gusto" required data-track>
+          </div>
+          <div class="field">
+            <label>Giro o categoría <span class="req">*</span></label>
+            <input type="text" name="giro" placeholder="Ej: Repostería artesanal" required data-track>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Ciudad y Estado <span class="req">*</span></label>
+            <input type="text" name="ubicacion" placeholder="Ej: Nicolás Romero, Estado de México" required data-track>
+          </div>
+          <div class="field">
+            <label>Nombre del contacto <span class="req">*</span></label>
+            <input type="text" name="contacto" placeholder="Tu nombre completo" required data-track>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>WhatsApp del negocio <span class="req">*</span></label>
+            <input type="tel" name="whatsapp" placeholder="55 1234 5678" required data-track>
+            <span class="hint">Con código de área, a 10 dígitos</span>
+          </div>
+          <div class="field">
+            <label>Email <span class="opt">Opcional</span></label>
+            <input type="email" name="email" placeholder="tucorreo@ejemplo.com" data-track>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Descripción de tu negocio <span class="req">*</span></label>
+            <textarea name="descripcion" placeholder="Cuéntanos qué haces, qué vendes, a quién va dirigido, qué te hace diferente..." required data-track></textarea>
+            <span class="hint">Mientras más detalle nos des, mejor podremos diseñar tu web</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SECCIÓN 2: PLAN Y DOMINIO ============ -->
+      <div class="form-section">
+        <div class="section-head">
+          <div class="section-icon"><i class="fas fa-crown"></i></div>
+          <div class="section-head-txt">
+            <h2>2. Plan y dominio</h2>
+            <p>Elige cómo quieres tu proyecto</p>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Plan de interés <span class="req">*</span></label>
+            <div class="option-grid">
+              <label class="option-card">
+                <input type="radio" name="plan" value="Esencial ($250/mes)" required data-track>
+                <div class="opt-icon"><i class="fas fa-globe"></i></div>
+                <div class="opt-info">
+                  <b>Plan Esencial</b>
+                  <span>$250 MXN / mes · Web profesional + subdominio + WhatsApp</span>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="plan" value="Premium ($1,499/mes)" required data-track>
+                <div class="opt-icon"><i class="fas fa-crown"></i></div>
+                <div class="opt-info">
+                  <b>Plan Premium</b>
+                  <span>$1,499 MXN / mes · CRM + IA + citas + automatizaciones</span>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="plan" value="Aún no lo sé, necesito asesoría" required data-track>
+                <div class="opt-icon"><i class="fas fa-comments"></i></div>
+                <div class="opt-info">
+                  <b>Necesito asesoría</b>
+                  <span>Cuéntanos tu caso y te recomendamos el mejor plan</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>¿Qué dominio prefieres? <span class="req">*</span></label>
+            <div class="option-grid">
+              <label class="option-card">
+                <input type="radio" name="dominio" value="Subdominio gratuito (tunegocio.rednr.com)" required data-track>
+                <div class="opt-icon"><i class="fas fa-gift"></i></div>
+                <div class="opt-info">
+                  <b>Subdominio gratis</b>
+                  <span>tunegocio.rednr.com · Incluido, listo en minutos</span>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="dominio" value="Dominio propio (tunegocio.com)" required data-track>
+                <div class="opt-icon"><i class="fas fa-star"></i></div>
+                <div class="opt-info">
+                  <b>Dominio propio</b>
+                  <span>tunegocio.com · Se paga por separado al registrador</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row single" id="dominioPropioField" style="display:none">
+          <div class="field">
+            <label>¿Ya tienes un dominio propio? <span class="opt">Si aplica</span></label>
+            <input type="text" name="dominio_actual" placeholder="tunegocio.com" data-track>
+            <span class="hint">Si ya lo tienes, nosotros lo conectamos a tu web. Si no, te asesoramos para adquirirlo.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SECCIÓN 3: SECCIONES Y CONTENIDO ============ -->
+      <div class="form-section">
+        <div class="section-head">
+          <div class="section-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="section-head-txt">
+            <h2>3. Secciones y contenido</h2>
+            <p>¿Qué quieres incluir en tu página?</p>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Secciones que quieres incluir <span class="req">*</span></label>
+            <div class="check-list">
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Inicio/Hero" data-track>
+                <i class="fas fa-check"></i> Inicio/Hero
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Sobre nosotros" data-track>
+                <i class="fas fa-check"></i> Sobre nosotros
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Productos/Catálogo" data-track>
+                <i class="fas fa-check"></i> Productos/Catálogo
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Servicios" data-track>
+                <i class="fas fa-check"></i> Servicios
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Galería de imágenes" data-track>
+                <i class="fas fa-check"></i> Galería
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Menú de restaurante" data-track>
+                <i class="fas fa-check"></i> Menú de restaurante
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Carrito de pedidos WhatsApp" data-track>
+                <i class="fas fa-check"></i> Carrito por WhatsApp
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Testimonios" data-track>
+                <i class="fas fa-check"></i> Testimonios
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Preguntas frecuentes" data-track>
+                <i class="fas fa-check"></i> Preguntas frecuentes
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Formulario de contacto" data-track>
+                <i class="fas fa-check"></i> Formulario de contacto
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Ubicación con mapa" data-track>
+                <i class="fas fa-check"></i> Ubicación/Mapa
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Blog/Noticias" data-track>
+                <i class="fas fa-check"></i> Blog
+              </label>
+              <label class="check-pill">
+                <input type="checkbox" name="secciones" value="Redes sociales" data-track>
+                <i class="fas fa-check"></i> Redes sociales
+              </label>
+            </div>
+            <span class="hint">Puedes marcar todas las que necesites</span>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>¿Tienes textos listos? <span class="req">*</span></label>
+            <select name="textos_listos" required data-track>
+              <option value="">Selecciona una opción</option>
+              <option value="Sí, tengo todos los textos listos">Sí, tengo todos los textos listos</option>
+              <option value="Tengo algunos, otros hay que redactar">Tengo algunos, otros hay que redactar</option>
+              <option value="No tengo, necesito que ustedes redacten">No tengo, necesito que ustedes redacten</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>¿Tienes imágenes/fotos? <span class="req">*</span></label>
+            <select name="imagenes_listas" required data-track>
+              <option value="">Selecciona una opción</option>
+              <option value="Sí, tengo fotos profesionales">Sí, tengo fotos profesionales</option>
+              <option value="Tengo algunas, pero son de celular">Tengo algunas, pero son de celular</option>
+              <option value="No tengo, necesito sugerencias">No tengo, necesito sugerencias</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Referencias o páginas que te gusten <span class="opt">Opcional</span></label>
+            <textarea name="referencias" placeholder="Pega aquí links de sitios que te gusten (competencia, referencias, inspiración). Nos ayuda a entender tu estilo." data-track></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SECCIÓN 4: IDENTIDAD DE MARCA ============ -->
+      <div class="form-section">
+        <div class="section-head">
+          <div class="section-icon"><i class="fas fa-palette"></i></div>
+          <div class="section-head-txt">
+            <h2>4. Identidad de marca</h2>
+            <p>Colores, logo y estilo visual</p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>¿Ya tienes logo? <span class="req">*</span></label>
+            <select name="tiene_logo" required data-track>
+              <option value="">Selecciona una opción</option>
+              <option value="Sí, tengo logo en alta calidad (PNG/SVG)">Sí, tengo logo en alta calidad</option>
+              <option value="Sí, pero es de baja calidad">Sí, pero es de baja calidad</option>
+              <option value="No tengo, necesito que lo hagan">No tengo, necesito uno</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Redes sociales activas <span class="opt">Opcional</span></label>
+            <input type="text" name="redes" placeholder="@tunegocio en Instagram, Facebook, TikTok..." data-track>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Colores preferidos para tu web <span class="opt">Opcional</span></label>
+            <input type="text" name="colores" placeholder="Ej: Azul y dorado, tonos pastel, rojo y negro..." data-track>
+            <span class="hint">Si no tienes colores definidos, nosotros te proponemos una paleta profesional acorde a tu marca</span>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Estilo visual que prefieres <span class="req">*</span></label>
+            <div class="option-grid">
+              <label class="option-card">
+                <input type="radio" name="estilo" value="Moderno y minimalista" required data-track>
+                <div class="opt-icon"><i class="fas fa-feather-alt"></i></div>
+                <div class="opt-info"><b>Moderno y minimalista</b><span>Limpio, elegante, con mucho espacio</span></div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="estilo" value="Corporativo y serio" required data-track>
+                <div class="opt-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="opt-info"><b>Corporativo y serio</b><span>Formal, confiable, estructurado</span></div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="estilo" value="Vibrante y llamativo" required data-track>
+                <div class="opt-icon"><i class="fas fa-fire"></i></div>
+                <div class="opt-info"><b>Vibrante y llamativo</b><span>Colores fuertes, dinámico, juvenil</span></div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="estilo" value="Elegante y premium" required data-track>
+                <div class="opt-icon"><i class="fas fa-gem"></i></div>
+                <div class="opt-info"><b>Elegante y premium</b><span>Sofisticado, alta gama, exclusivo</span></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SECCIÓN 5: OBJETIVOS Y EXTRAS ============ -->
+      <div class="form-section">
+        <div class="section-head">
+          <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+          <div class="section-head-txt">
+            <h2>5. Objetivos y detalles finales</h2>
+            <p>¿Qué esperas lograr con tu web?</p>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>Objetivo principal de tu página web <span class="req">*</span></label>
+            <textarea name="objetivo" placeholder="Ej: Recibir más pedidos por WhatsApp, darme a conocer, agendar citas, vender productos..." required data-track></textarea>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>¿Ya tienes hosting o subdominio en RED-NR? <span class="req">*</span></label>
+            <select name="hosting_actual" required data-track>
+              <option value="">Selecciona una opción</option>
+              <option value="No tengo nada, empecemos desde cero">No tengo nada, empecemos de cero</option>
+              <option value="Ya soy cliente RED-NR (tengo subdominio)">Ya soy cliente RED-NR</option>
+              <option value="Tengo hosting con otro proveedor">Tengo hosting con otro proveedor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>¿Cuándo necesitas tu página lista? <span class="req">*</span></label>
+            <select name="urgencia" required data-track>
+              <option value="">Selecciona una opción</option>
+              <option value="Lo antes posible (urgente)">Lo antes posible (urgente)</option>
+              <option value="Esta semana">Esta semana</option>
+              <option value="En 2 semanas">En 2 semanas</option>
+              <option value="Sin prisa, cuando esté listo">Sin prisa, cuando esté listo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row single">
+          <div class="field">
+            <label>¿Algo más que debamos saber? <span class="opt">Opcional</span></label>
+            <textarea name="extras" placeholder="Cuéntanos cualquier detalle extra, pregunta o comentario que tengas..." data-track></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ TÉRMINOS ============ -->
+      <div class="form-section">
+        <div class="field-row single">
+          <label class="terms-box" id="termsBox">
+            <input type="checkbox" name="acepto_terminos" required data-track>
+            <div class="check-visual"><i class="fas fa-check"></i></div>
+            <p>
+              He leído y acepto los <a href="terminos.html" target="_blank">Términos y Condiciones</a>, el <a href="terminos.html#seccion-3" target="_blank">Aviso de Privacidad</a> y el <a href="terminos.html#seccion-13" target="_blank">Acuerdo de Tratamiento de Datos (DPA)</a>. Autorizo a RED-NR a contactarme por WhatsApp o email para dar seguimiento a mi proyecto.
+            </p>
+          </label>
+        </div>
+      </div>
+
+      <!-- ============ BOTÓN ENVIAR ============ -->
+      <div class="form-actions">
+        <div class="form-info">
+          <i class="fas fa-shield-alt"></i>
+          <span>Tus datos están seguros. Todo se envía directo a nuestro WhatsApp.</span>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <i class="fab fa-whatsapp"></i>
+          Enviar briefing
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- ================= MODAL DE ÉXITO ================= -->
+<div class="success-modal" id="successModal">
+  <div class="success-card">
+    <div class="success-icon"><i class="fas fa-check"></i></div>
+    <h2>¡Briefing enviado!</h2>
+    <p>Gracias por confiar en RED-NR. Si no se abrió WhatsApp automáticamente, haz clic en el botón de abajo para enviarnos tu información.</p>
+    <div class="success-actions">
+      <a href="#" id="waOpenBtn" target="_blank" rel="noopener" class="btn-wa-open">
+        <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+      </a>
+      <button class="btn-close-success" id="closeSuccess">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= WHATSAPP FLOTANTE ================= -->
+<a class="wa-float" href="https://wa.me/5215587304748?text=Hola%2C%20necesito%20ayuda%20con%20mi%20briefing" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  // ============ CONFIGURACIÓN ============
+  const WA_NUMBER = '5215587304748';
+
+  // ============ HEADER SCROLL ============
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+
+  // ============ OPTION CARDS (radio) ============
+  // Usamos el evento change del input (nativo), así no hay conflictos con el label
+  document.querySelectorAll('.option-card input[type="radio"]').forEach(input => {
+    // Estado inicial
+    if (input.checked) input.closest('.option-card').classList.add('selected');
+
+    input.addEventListener('change', () => {
+      // Limpiar grupo
+      document.querySelectorAll(`.option-card input[name="${input.name}"]`).forEach(inp => {
+        inp.closest('.option-card').classList.toggle('selected', inp.checked);
+      });
+      // Si es dominio, mostrar campo adicional
+      if (input.name === 'dominio') {
+        const field = document.getElementById('dominioPropioField');
+        field.style.display = input.value.includes('Dominio propio') ? 'block' : 'none';
+      }
+      updateProgress();
+    });
+  });
+
+  // ============ CHECK PILLS ============
+  // Usamos el evento change del input (nativo)
+  document.querySelectorAll('.check-pill input[type="checkbox"]').forEach(input => {
+    if (input.checked) input.closest('.check-pill').classList.add('selected');
+
+    input.addEventListener('change', () => {
+      input.closest('.check-pill').classList.toggle('selected', input.checked);
+      updateProgress();
+    });
+  });
+
+  // ============ TERMS BOX ============
+  const termsInput = document.querySelector('input[name="acepto_terminos"]');
+  const termsBox = termsInput.closest('.terms-box');
+
+  if (termsInput.checked) termsBox.classList.add('selected');
+
+  termsInput.addEventListener('change', () => {
+    termsBox.classList.toggle('selected', termsInput.checked);
+    updateProgress();
+  });
+
+  // ============ PROGRESO ============
+  const progressFill = document.getElementById('progressFill');
+  const progressPercent = document.getElementById('progressPercent');
+  const progressText = document.getElementById('progressText');
+
+  function updateProgress(){
+    const form = document.getElementById('briefingForm');
+    const allRequired = form.querySelectorAll('[required]');
+    let filled = 0, total = 0;
+    const radioGroups = new Set();
+
+    allRequired.forEach(inp => {
+      if (inp.type === 'radio') {
+        if (radioGroups.has(inp.name)) return;
+        radioGroups.add(inp.name);
+        total++;
+        if (form.querySelector(`input[name="${inp.name}"]:checked`)) filled++;
+      } else if (inp.type === 'checkbox') {
+        total++;
+        if (inp.checked) filled++;
+      } else {
+        total++;
+        if (inp.value && inp.value.trim() !== '') filled++;
+      }
+    });
+
+    const pct = total > 0 ? Math.round((filled / total) * 100) : 0;
+
+    progressFill.style.width = pct + '%';
+    progressPercent.textContent = pct + '%';
+
+    if (pct === 0) progressText.textContent = 'Empecemos ✨';
+    else if (pct < 30) progressText.textContent = 'Vas bien 🚀';
+    else if (pct < 70) progressText.textContent = 'A la mitad 💪';
+    else if (pct < 100) progressText.textContent = '¡Ya casi! 🎯';
+    else progressText.textContent = '¡Listo para enviar! ✅';
+  }
+
+  // Escuchar cambios en inputs de texto, selects y textareas
+  document.querySelectorAll('#briefingForm input[type="text"], #briefingForm input[type="tel"], #briefingForm input[type="email"], #briefingForm input[type="url"], #briefingForm select, #briefingForm textarea').forEach(el => {
+    el.addEventListener('input', updateProgress);
+    el.addEventListener('change', updateProgress);
+  });
+
+  // ============ SUBMIT ============
+  document.getElementById('briefingForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const form = e.target;
+    const missing = [];
+    const requiredNames = new Set();
+
+    form.querySelectorAll('[required]').forEach(inp => {
+      if (inp.type === 'radio') {
+        if (requiredNames.has(inp.name)) return;
+        requiredNames.add(inp.name);
+        if (!form.querySelector(`input[name="${inp.name}"]:checked`)) {
+          missing.push(inp.name);
+        }
+      } else if (inp.type === 'checkbox') {
+        if (!inp.checked) missing.push(inp.name);
+      } else if (!inp.value || !inp.value.trim()) {
+        missing.push(inp.name);
+      }
+    });
+
+    if (missing.length > 0) {
+      const firstMissing = form.querySelector(`[name="${missing[0]}"]`);
+      if (firstMissing) {
+        firstMissing.closest('.field-row, .form-section')?.scrollIntoView({ behavior:'smooth', block:'center' });
+      }
+      alert('Por favor completa todos los campos obligatorios antes de enviar.\n\nCampos faltantes: ' + missing.length);
+      return;
+    }
+
+    // ============ CONSTRUIR MENSAJE ============
+    const get = (name) => {
+      const el = form.querySelector(`[name="${name}"]`);
+      return el ? el.value.trim() : '';
+    };
+
+    const getRadio = (name) => {
+      const el = form.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '';
+    };
+
+    const getChecks = (name) => {
+      return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value).join(', ') || 'No especificado';
+    };
+
+    const msg = `*🌟 NUEVO BRIEFING DE PROYECTO*
+
+*📋 DATOS DEL NEGOCIO*
+• Nombre: ${get('nombre_negocio')}
+• Giro: ${get('giro')}
+• Ubicación: ${get('ubicacion')}
+• Contacto: ${get('contacto')}
+• WhatsApp: ${get('whatsapp')}
+• Email: ${get('email') || 'No especificado'}
+
+*📝 DESCRIPCIÓN*
+${get('descripcion')}
+
+*💼 PLAN Y DOMINIO*
+• Plan: ${getRadio('plan')}
+• Dominio: ${getRadio('dominio')}
+${get('dominio_actual') ? `• Dominio actual: ${get('dominio_actual')}` : ''}
+
+*📄 SECCIONES SOLICITADAS*
+${getChecks('secciones')}
+
+*📝 CONTENIDO*
+• Textos: ${get('textos_listos')}
+• Imágenes: ${get('imagenes_listas')}
+
+*🔗 REFERENCIAS*
+${get('referencias') || 'No especificado'}
+
+*🎨 IDENTIDAD DE MARCA*
+• Logo: ${get('tiene_logo')}
+• Redes: ${get('redes') || 'No especificado'}
+• Colores preferidos: ${get('colores') || 'No especificado'}
+• Estilo visual: ${getRadio('estilo')}
+
+*🎯 OBJETIVOS*
+${get('objetivo')}
+
+*⚙️ DETALLES TÉCNICOS*
+• Hosting actual: ${get('hosting_actual')}
+• Urgencia: ${get('urgencia')}
+
+*📌 EXTRAS*
+${get('extras') || 'Ninguno'}
+
+*✅ ACEPTÓ TÉRMINOS Y CONDICIONES*
+
+——
+Enviado desde el formulario de RED-NR`;
+
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+    document.getElementById('waOpenBtn').href = url;
+    window.open(url, '_blank');
+    document.getElementById('successModal').classList.add('open');
+  });
+
+  // ============ CERRAR MODAL ============
+  document.getElementById('closeSuccess').addEventListener('click', () => {
+    document.getElementById('successModal').classList.remove('open');
+  });
+  document.getElementById('successModal').addEventListener('click', (e) => {
+    if (e.target.id === 'successModal') {
+      e.target.classList.remove('open');
+    }
+  });
+
+  // ============ INIT ============
+  updateProgress();
+
+});
+</script>
+</body>
+</html>
