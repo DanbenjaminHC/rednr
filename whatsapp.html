@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar WhatsApp PamBee - Automatización</title>
+    <!-- Fuente de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #25D366;
+            --primary-dark: #128C7E;
+            --dark: #111b21;
+            --light: #f0f2f5;
+            --text: #3b4a54;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Encabezado (Hero) */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #1f2c34 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #aebac1;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Botón de descarga */
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 18px 40px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-download i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+
+        .btn-download:hover {
+            background-color: #1ebe57;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Sección de características */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        /* Pasos de instalación */
+        .steps {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 60px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: var(--dark);
+            font-weight: bold;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Aviso de advertencia */
+        .warning {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+
+        .warning h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .warning p {
+            color: #856404;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--dark);
+            color: #aebac1;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .btn-download { width: 100%; padding: 15px 20px; }
+            .steps { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sección Principal -->
+    <header class="hero">
+        <h1>WhatsApp PamBee</h1>
+        <p>Automatiza tus mensajes, gestiona contactos y responde por palabras clave de manera fácil y rápida.</p>
+        
+        <!-- ENLACE DE DESCARGA AQUÍ -->
+        <a href="https://assets.cdn.filesafe.space/orLNFmqquwQDs4QXcbfS/media/6ad6989e3b8fa9783e765468.zip" class="btn-download" target="_blank">
+            <i class="fas fa-download"></i> Descargar Programa (.zip)
+        </a>
+    </header>
+
+    <div class="container">
+        <!-- Características -->
+        <h2 class="section-title">¿Qué puedes hacer con esta app?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-paper-plane"></i>
+                <h3>Envíos Masivos</h3>
+                <p>Envía mensajes personalizados a múltiples números usando variables como <b>{nombre}</b> o <b>{empresa}</b>.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-robot"></i>
+                <h3>Respuestas Automáticas</h3>
+                <p>Crea reglas de "palabra clave → respuesta" para contestar automáticamente a tus clientes en chats privados.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Programación y Goteo</h3>
+                <p>Programa envíos para fechas futuras o configura un retraso aleatorio entre mensajes para mayor seguridad.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-file-csv"></i>
+                <h3>Importar CSV</h3>
+                <p>Sube tu lista de contactos en formato CSV con columnas extra que se convierten en variables personalizadas.</p>
+            </div>
+        </div>
+
+        <!-- Pasos de Instalación -->
+        <div class="steps">
+            <h2 class="section-title" style="margin-bottom: 30px; font-size: 1.5rem;">¿Cómo instalarlo?</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Descarga y Descomprime</h4>
+                    <p>Haz clic en el botón de descarga y extrae el contenido del archivo <b>.zip</b> en una carpeta de tu preferencia.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Ejecuta la aplicación</h4>
+                    <p>Si usas el modo desarrollo, haz doble clic en <b>iniciar.bat</b>. Si descargaste la versión empaquetada, abre <b>whatsappPamBee.exe</b>.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Vincula tu WhatsApp</h4>
+                    <p>Escanea el código QR que aparecerá en la pantalla desde tu teléfono: <i>Ajustes → Dispositivos vinculados → Vincular un dispositivo</i>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advertencia -->
+        <div class="warning">
+            <h4><i class="fas fa-exclamation-triangle"></i> Aviso Importante</h4>
+            <p>Esta aplicación utiliza la API no oficial de WhatsApp (Baileys). WhatsApp puede suspender números que usen automatización. Úsala preferiblemente con un <b>número de prueba o secundario</b> y con moderación. Si Windows SmartScreen muestra un aviso al abrir el programa, pulsa en <i>"Más información"</i> y luego en <i>"Ejecutar de todos modos"</i>.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 WhatsApp PamBee. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
